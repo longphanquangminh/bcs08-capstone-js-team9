@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BCS08 Capstone JS Team 9</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet" />
+  </head>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          keyframes: {
+            clockwise: {
+              "0%": { top: "-5px", left: "0" },
+              "12%": { top: "-2px", left: "2px" },
+              "25%": { top: "0", left: "5px" },
+              "37%": { top: "2px", left: "2px" },
+              "50%": { top: "5px", left: "0" },
+              "62%": { top: "2px", left: "-2px" },
+              "75%": { top: "0", left: "-5px" },
+              "87%": { top: "-2px", left: "-2px" },
+              "100%": { top: "-5px", left: "0" },
+            },
+            counterclockwise: {
+              "0%": { top: "-5px", right: "0" },
+              "12%": { top: "-2px", right: "2px" },
+              "25%": { top: "0", right: "5px" },
+              "37%": { top: "2px", right: "2px" },
+              "50%": { top: "5px", right: "0" },
+              "62%": { top: "2px", right: "-2px" },
+              "75%": { top: "0", right: "-5px" },
+              "87%": { top: "-2px", right: "-2px" },
+              "100%": { top: "-5px", right: "0" },
+            },
+          },
+          animation: {
+            clockwise: "1s clockwise infinite",
+            counterclockwise: "2s counterclockwise infinite",
+          },
+        },
+      },
+      variants: {},
+      plugins: [],
+    };
+  </script>
+  <body>
+    <div
+      class="bg-cover bg-no-repeat bg-center w-auto lg:w-screen h-max lg:h-screen grid content-normal lg:content-center grid-cols-1 lg:grid-cols-2 gap-24 bg-[url('./assets/img/bg.jpg')] py-6 lg:py-0"
+    >
+      <a href="./admin/view" class="group mx-auto relative z-10">
+        <div
+          class="absolute top-0 left-0 w-[250px] h-[250px] text-white rounded-[75px] bg-[#fda8cf] group-hover:animate-counterclockwise -z-10"
+        ></div>
+        <div class="w-[250px] h-[250px] bg-[#d3d7d8] rounded-[75px] mb-3">
+          <img src="./assets/img/admin2.png" class="w-full h-full object-contain" alt="" />
+        </div>
+        <h1 class="relative capitalize text-center text-white text-3xl group-hover:text-[#f3ce5e]">
+          <span class="relative inline-block">
+            Admin Page
+            <span class="absolute bg-[#f3ce5e] top-10 left-0 w-0 group-hover:w-full duration-300 h-1"></span>
+          </span>
+        </h1>
+        <div class="absolute top-0 left-0 w-[250px] h-[250px] text-white rounded-[75px] bg-[#f3ce5e] group-hover:animate-clockwise -z-10"></div>
+      </a>
+      <a href="./customer/view" class="group mx-auto relative z-10">
+        <div
+          class="absolute top-0 left-0 w-[250px] h-[250px] text-white rounded-[75px] bg-[#fda8cf] group-hover:animate-counterclockwise -z-10"
+        ></div>
+        <div class="w-[250px] h-[250px] bg-[#d3d7d8] rounded-[75px] mb-3">
+          <img src="./assets/img/store.png" class="w-full h-full object-contain" alt="" />
+        </div>
+        <h1 class="relative capitalize text-center text-white text-3xl group-hover:text-[#f3ce5e]">
+          <span class="relative inline-block">
+            Store Page
+            <span class="absolute bg-[#f3ce5e] top-10 left-0 w-0 group-hover:w-full duration-300 h-1"></span>
+          </span>
+        </h1>
+        <div class="absolute top-0 left-0 w-[250px] h-[250px] text-white rounded-[75px] bg-[#f3ce5e] group-hover:animate-clockwise -z-10"></div>
+      </a>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
+  </body>
+</html>
