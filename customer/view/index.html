@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Main Css -->
+    <link rel="stylesheet" href="../../assets/css/storePage.css" />
+    <title>Phone Store</title>
+  </head>
+  <body>
+    <header class="p-3 bg-cyan-600 header">
+      <div class="max-w-7xl mx-auto flex items-center header-container">
+        <a href="#" class="inline-flex gap-3 items-center mr-32 logo">
+          <img src="../../assets/img/logo.svg" alt="" class="inline-block" />
+          <span class="text-white text-2xl font-semibold whitespace-nowrap"
+            >Cyber Phone</span
+          >
+        </a>
+        <nav class="flex justify-between w-full nav">
+          <div class="flex gap-12">
+            <a href="#" class="nav-item">
+              <i class="fa-solid fa-house"></i>
+              <span>Home</span>
+            </a>
+            <a href="#" class="nav-item">
+              <i class="fa-solid fa-user-gear"></i>
+              <span>Admin Portal</span>
+            </a>
+          </div>
+          <a href="" class="nav-item cart-btn">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Cart</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="banner">
+      <div
+        class="max-w-7xl mx-auto flex items-center gap-3 h-[100vh] banner-container"
+      >
+        <div class="w-1/2 banner-content">
+          <h2>Galaxy Z Flip5</h2>
+          <div class="rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+          </div>
+          <p>
+            Cùng gặp gỡ Flex Window 3.4 inch - màn hình ngoài đa năng được sinh
+            ra để bạn thể hiện cá tính.1 Với bản lề Flex được tái thiết kế, giờ
+            đây Galaxy Z Flip5 có thể gập sát lại và nằm gọn trong túi, cũng như
+            trong tay bạn
+          </p>
+          <span class="price">25.990.400 ₫</span>
+          <button class="button cursor-pointer">Thêm vào giỏ hàng</button>
+        </div>
+        <div class="w-1/2 banner-img">
+          <img
+            src="https://images.samsung.com/is/image/samsung/p6pim/vn/2307/gallery/vn-galaxy-z-flip5-f731-sm-f731blgexxv-thumb-537229869?imwidth=480"
+            alt=""
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="products">
+      <div class="max-w-7xl mx-auto py-10 products-container">
+        <div class="mb-9 select-menu">
+          <div class="select-btn">
+            <span class="sBtn-text">Tất cả sản phẩm</span>
+            <i class="bx bx-chevron-down"></i>
+          </div>
+
+          <ul class="options">
+            <li class="option">
+              <img src="../../assets/img/samsung.svg" alt="" />
+              <span class="pl-2 option-text">Samsung</span>
+            </li>
+            <li class="option">
+              <img src="../../assets/img/apple.svg" alt="" />
+              <span class="pl-4 option-text">Iphone</span>
+            </li>
+          </ul>
+        </div>
+        <div class="grid grid-cols-4 gap-8 product-list">
+          <div class="product-item">
+            <img
+              src="https://images.unsplash.com/photo-1678911820864-e2c567c655d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80"
+              alt=""
+            />
+            <h3>Samsung s23+</h3>
+            <h4>31.990.200 ₫</h4>
+            <span>Samsung</span>
+            <p>
+              Thiết kế đối xứng đậm chất Samsung Galaxy S23 Ultra trở lại với sự
+              khác biệt nổi bật
+            </p>
+            <div class="rating">
+              <div class="stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+              </div>
+              <div class="like">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+            </div>
+            <div class="overlay">
+              <h4>Thông số chi tiết</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../controller/main.js"></script>
+  </body>
+</html>
