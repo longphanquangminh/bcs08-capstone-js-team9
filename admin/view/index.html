@@ -313,7 +313,7 @@
                 required=""
               />
             </div>
-            <div class="sm:col-span-2" id="photoSection">
+            <div class="sm:col-span-2">
               <label for="photo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo</label>
               <input
                 type="text"
@@ -324,22 +324,22 @@
                 required=""
               />
             </div>
-            <div class="sm:col-span-2" id="reviewSection">
-              <label for="review" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Review</label>
+            <div class="sm:col-span-2">
+              <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
               <textarea
-                id="review"
-                name="review"
+                id="description"
+                name="description"
                 rows="5"
                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-sky-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
-                placeholder="Write a review..."
+                placeholder="Write a description..."
               ></textarea>
             </div>
           </div>
           <button
-            id="addNewProductBtn"
             class="text-white inline-flex items-center bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
             data-modal-target="createProductModal"
             data-modal-toggle="createProductModal"
+            onclick="addProduct()"
           >
             <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -406,7 +406,7 @@
                 required=""
               />
             </div>
-            <div class="sm:col-span-2" id="photoSection">
+            <div class="sm:col-span-2">
               <label for="photoUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo</label>
               <input
                 type="text"
@@ -417,20 +417,22 @@
                 required=""
               />
             </div>
-            <div class="sm:col-span-2" id="reviewSection">
-              <label for="reviewUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Review</label>
+            <div class="sm:col-span-2">
+              <label for="descriptionUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
               <textarea
-                id="reviewUpdate"
-                name="reviewUpdate"
+                id="descriptionUpdate"
+                name="descriptionUpdate"
                 rows="5"
                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-sky-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
-                placeholder="Write a review..."
+                placeholder="Write a description..."
               ></textarea>
             </div>
           </div>
           <div class="flex items-center space-x-4">
             <button
               class="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
+              data-modal-toggle="updateProductModal"
+              onclick="updateProduct()"
             >
               Update product
             </button>
@@ -596,5 +598,6 @@
       document.getElementById("mobile-menu").classList.toggle("hidden");
     });
   </script>
+  <script src="../model/model.js"></script>
   <script src="../services/services.js"></script>
 </html>

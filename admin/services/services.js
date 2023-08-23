@@ -30,7 +30,7 @@ function deleteProduct() {
     });
 }
 
-function deleteProductGetId(id) {
+function getProductId(id) {
   chosenProductId = id;
 }
 
@@ -43,7 +43,7 @@ function readProduct(id) {
   })
     .then(res => {
       document.getElementById("namePreview").innerHTML = res.data.name;
-      document.getElementById("pricePreview").innerHTML = res.data.price;
+      document.getElementById("pricePreview").innerHTML = new Intl.NumberFormat().format((res.data.price * 1).toFixed(2));
       document.getElementById("descriptionPreview").innerHTML = res.data.desc;
       document.getElementById("typePreview").innerHTML = res.data.type;
     })
@@ -56,14 +56,14 @@ function readProduct(id) {
 function renderProductList(list) {
   let contentHTML = "";
   list.reverse().forEach((product, index) => {
-    let { id, name, price, image, desc } = product;
+    let { id, name, price, image, desc, type } = product;
     let itemString =
       /*html*/
       `
     <tr class="border-b dark:border-gray-700">
     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">${index + 1}</th>
     <td class="px-4 py-3">${name}</td>
-    <td class="px-4 py-3">${price}</td>
+    <td class="px-4 py-3">${new Intl.NumberFormat().format((price * 1).toFixed(2))}</td>
     <td class="px-4 py-3 max-w-[12rem]"><img class="w-full" src="${image}" alt="${id}" /></td>
     <td class="px-4 py-3 max-w-[12rem] truncate">${desc}</td>
     <td class="px-4 py-3 items-center justify-end">
@@ -88,6 +88,7 @@ function renderProductList(list) {
               data-modal-target="updateProductModal"
               data-modal-toggle="updateProductModal"
               class="flex w-full items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200"
+              onclick="editProduct(${id})"
             >
               <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
@@ -125,7 +126,7 @@ function renderProductList(list) {
               data-modal-target="deleteModal"
               data-modal-toggle="deleteModal"
               class="flex w-full items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 text-red-500 dark:hover:text-red-400"
-              onclick="deleteProductGetId(${id})"
+              onclick="getProductId(${id})"
             >
               <svg class="w-4 h-4 mr-2" viewbox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path
@@ -148,18 +149,59 @@ function renderProductList(list) {
   document.getElementById("adminProductList").innerHTML = contentHTML;
 }
 
-function editProduct(id) {}
-
-function updateProduct(id) {
-  let name = document.getElementById("name").value;
-  let price = document.getElementById("price").value;
-  let image = document.getElementById("image").value;
-  let desc = document.getElementById("desc").value;
-  let type = document.getElementById("type").value;
-  let product = new Product(name, price, image, desc, type);
-  startLoading();
+function editProduct(id) {
+  chosenProductId = id;
   axios({
     url: `${BASE_URL}/${id}`,
+    method: "GET",
+  })
+    .then(res => {
+      document.getElementById("nameUpdate").value = res.data.name;
+      document.getElementById("priceUpdate").value = res.data.price;
+      document.getElementById("photoUpdate").value = res.data.image;
+      document.getElementById("descriptionUpdate").value = res.data.desc;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
+function addProduct() {
+  let name = document.getElementById("name").value;
+  let price = document.getElementById("price").value * 1;
+  let image = document.getElementById("photo").value;
+  let desc = document.getElementById("description").value;
+  // let type = document.getElementById("type").value;
+  // let product = new Product(name, price, image, desc, type);
+  let product = new Product(name, price, image, desc, "SUV");
+  startLoading();
+  axios({
+    url: BASE_URL,
+    method: "POST",
+    data: product,
+  })
+    .then(res => {
+      fetchProductList();
+      endLoading();
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+      endLoading();
+    });
+}
+
+function updateProduct() {
+  let name = document.getElementById("nameUpdate").value;
+  let price = document.getElementById("priceUpdate").value * 1;
+  let image = document.getElementById("photoUpdate").value;
+  let desc = document.getElementById("descriptionUpdate").value;
+  // let type = document.getElementById("type").value;
+  // let product = new Product(name, price, image, desc, type);
+  let product = new Product(name, price, image, desc);
+  startLoading();
+  axios({
+    url: `${BASE_URL}/${chosenProductId}`,
     method: "PUT",
     data: product,
   })
