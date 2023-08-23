@@ -10,6 +10,13 @@
   background-color: #4fc0d0;
 }
 
+#cart-menu {
+  transition: 0.3s;
+}
+#cart-menu.active {
+  transform: translateX(0);
+}
+
 .select-menu {
   max-width: 330px;
 }
@@ -40,8 +47,8 @@
   border-radius: 8px;
   background: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  animation-name: fadeInDown;
-  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInUp;
+  -webkit-animation-name: fadeInUp;
   animation-duration: 0.35s;
   animation-fill-mode: both;
   -webkit-animation-duration: 0.35s;
@@ -74,30 +81,30 @@
   display: block;
   opacity: 0;
   z-index: 10;
-  animation-name: fadeInUp;
-  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInDown;
+  -webkit-animation-name: fadeInDown;
   animation-duration: 0.4s;
   animation-fill-mode: both;
   -webkit-animation-duration: 0.4s;
   -webkit-animation-fill-mode: both;
 }
 
-@keyframes fadeInUp {
+@keyframes fadeInDown {
   from {
-    transform: translate3d(0, 30px, 0);
+    transform: translate3d(0, -30px, 0);
   }
   to {
     transform: translate3d(0, 0, 0);
     opacity: 1;
   }
 }
-@keyframes fadeInDown {
+@keyframes fadeInUp {
   from {
     transform: translate3d(0, 0, 0);
     opacity: 1;
   }
   to {
-    transform: translate3d(0, 20px, 0);
+    transform: translate3d(0, -20px, 0);
     opacity: 0;
   }
 }
@@ -107,6 +114,7 @@
   top: 0;
   width: 100%;
   z-index: 10;
+  background-color: transparent;
 }
 .header .nav-item {
   display: flex;
@@ -178,6 +186,13 @@
   border-radius: 10px;
   box-shadow: rgba(29, 93, 155, 0.3) 0px 7px 29px 0px;
   transition: 0.3s;
+  overflow: hidden;
+  position: relative;
+}
+.products .product-item .overlay {
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
 }
 .products .product-item img {
   height: 200px;
@@ -193,7 +208,7 @@
   color: red;
   margin: 6px 0;
 }
-.products .product-item span {
+.products .product-item .type {
   padding: 5px;
   border-radius: 5px;
   background-color: #fbeeac;
@@ -213,4 +228,18 @@
 }
 .products .product-item:hover {
   transform: scale(1.1);
+}
+.products .product-item:hover .overlay {
+  visibility: visible;
+  opacity: 1;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 9;
 }/*# sourceMappingURL=storePage.css.map */

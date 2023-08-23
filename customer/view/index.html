@@ -17,7 +17,7 @@
     <title>Phone Store</title>
   </head>
   <body>
-    <header class="p-3 bg-cyan-600 header">
+    <header class="p-3 header">
       <div class="max-w-7xl mx-auto flex items-center header-container">
         <a href="#" class="inline-flex gap-3 items-center mr-32 logo">
           <img src="../../assets/img/logo.svg" alt="" class="inline-block" />
@@ -36,13 +36,144 @@
               <span>Admin Portal</span>
             </a>
           </div>
-          <a href="" class="nav-item cart-btn">
+          <button class="nav-item cart-btn relative" id="cartBtn">
             <i class="fa-solid fa-cart-shopping"></i>
             <span>Cart</span>
-          </a>
+            <span
+              class="absolute top-[-8px] right-[-8px] w-4 h-4 flex justify-center items-center text-[12px] rounded-full bg-red-600 text-white"
+              id="quantity"
+              >0</span
+            >
+          </button>
         </nav>
       </div>
     </header>
+
+    <div
+      id="cart-menu"
+      class="fixed top-[72px] right-0 bottom-0 w-[500px] bg-white z-10 overflow-y-auto shadow-3xl translate-x-[100%]"
+    >
+      <div class="py-8 px-6">
+        <h3 class="text-3xl font-semibold mb-8">Danh sách mua hàng</h3>
+        <div class="cart-list">
+          <div
+            class="p-4 mb-5 rounded-xl shadow-md hover:shadow-xl duration-300 cart-item"
+          >
+            <div class="flex gap-7 mb-4 item-top">
+              <img src="../../assets/img/admin2.png" class="w-2/5" alt="" />
+              <div class="w-3/5 item-desc">
+                <h4 class="text-xl font-semibold mb-2">Samsung Flip 5</h4>
+                <p>
+                  <span class="">Màn hình:</span>
+                  <span class="text-gray-500">6.7 inch</span>
+                </p>
+                <p>
+                  <span class="">Camera sau:</span>
+                  <span class="text-gray-500">6.7 inch</span>
+                </p>
+                <p>
+                  <span class="">Camera trước:</span>
+                  <span class="text-gray-500">6.7 inch</span>
+                </p>
+                <button
+                  class="p-2 rounded-lg bg-red-500 hover:bg-red-600 duration-300 text-white mt-3"
+                >
+                  Xóa
+                </button>
+              </div>
+            </div>
+            <div class="flex justify-between items-center item-bot">
+              <div class="text-teal-800">
+                <span class="font-semibold">Quantity:</span>
+                <span class="cursor-pointer text-xl mx-1" onclick="">
+                  <i class="fa-solid fa-circle-minus"></i>
+                </span>
+                <span class="text-lg">3</span>
+                <span class="cursor-pointer text-xl mx-1" onclick="">
+                  <i class="fa-solid fa-circle-plus"></i>
+                </span>
+              </div>
+              <div class="text-green-800 font-semibold item-price">
+                25.000.000 vnd
+              </div>
+            </div>
+          </div>
+          <div
+            class="p-4 mb-5 rounded-xl shadow-md hover:shadow-xl duration-300 cart-item"
+          >
+            <div class="flex gap-7 mb-4 item-top">
+              <img src="../../assets/img/admin2.png" class="w-2/5" alt="" />
+              <div class="w-3/5 item-desc">
+                <h4 class="text-xl font-semibold mb-2">Samsung Flip 5</h4>
+                <p>
+                  <span class="">Màn hình:</span>
+                  <span class="text-gray-500">6.7 inch</span>
+                </p>
+                <p>
+                  <span class="">Camera sau:</span>
+                  <span class="text-gray-500">6.7 inch</span>
+                </p>
+                <p>
+                  <span class="">Camera trước:</span>
+                  <span class="text-gray-500">6.7 inch</span>
+                </p>
+                <button
+                  class="p-2 rounded-lg bg-red-500 hover:bg-red-600 duration-300 text-white mt-3"
+                >
+                  Xóa
+                </button>
+              </div>
+            </div>
+            <div class="flex justify-between items-center item-bot">
+              <div class="text-teal-800">
+                <span class="font-semibold">Quantity:</span>
+                <span class="cursor-pointer text-xl mx-1" onclick="">
+                  <i class="fa-solid fa-circle-minus"></i>
+                </span>
+                <span class="text-lg">3</span>
+                <span class="cursor-pointer text-xl mx-1" onclick="">
+                  <i class="fa-solid fa-circle-plus"></i>
+                </span>
+              </div>
+              <div class="text-green-800 font-semibold item-price">
+                25.000.000 vnd
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gray-100 p-6" id="payment">
+        <div class="flex justify-between mb-2">
+          <span class="text-gray-600">Tổng tiền hàng</span>
+          <span class="text-green-800">25.000.000 vnd</span>
+        </div>
+        <div class="flex justify-between mb-2">
+          <span class="text-gray-600">Tổng tiền phí vận chuyển</span>
+          <span class="text-green-800">25.000 vnd</span>
+        </div>
+        <div class="flex justify-between mb-2 font-semibold">
+          <span class="text-gray-600">Tổng thanh toán</span>
+          <span class="text-green-800">25.000.000 vnd</span>
+        </div>
+        <div class="text-white duration-300 flex justify-between mt-4">
+          <div>
+            <button
+              class="px-4 py-2 rounded-md bg-green-800 hover:bg-green-900"
+            >
+              Quay lại
+            </button>
+            <button class="px-4 py-2 rounded-md bg-red-500 hover:bg-red-600">
+              Xóa hết
+            </button>
+          </div>
+          <button class="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700">
+            Thanh toán
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="overlay" class="hidden"></div>
 
     <section class="banner">
       <div
@@ -83,18 +214,9 @@
             <i class="bx bx-chevron-down"></i>
           </div>
 
-          <ul class="options">
-            <li class="option">
-              <img src="../../assets/img/samsung.svg" alt="" />
-              <span class="pl-2 option-text">Samsung</span>
-            </li>
-            <li class="option">
-              <img src="../../assets/img/apple.svg" alt="" />
-              <span class="pl-4 option-text">Iphone</span>
-            </li>
-          </ul>
+          <ul class="options" id="options"></ul>
         </div>
-        <div class="grid grid-cols-4 gap-8 product-list">
+        <div class="grid grid-cols-4 gap-8 product-list" id="products">
           <div class="product-item">
             <img
               src="https://images.unsplash.com/photo-1678911820864-e2c567c655d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80"
@@ -102,7 +224,7 @@
             />
             <h3>Samsung s23+</h3>
             <h4>31.990.200 ₫</h4>
-            <span>Samsung</span>
+            <span class="type">Samsung</span>
             <p>
               Thiết kế đối xứng đậm chất Samsung Galaxy S23 Ultra trở lại với sự
               khác biệt nổi bật
@@ -119,14 +241,127 @@
                 <i class="fa-solid fa-heart"></i>
               </div>
             </div>
-            <div class="overlay">
-              <h4>Thông số chi tiết</h4>
+            <div
+              class="absolute top-0 left-0 w-full h-full bg-[#000]/[0.5] rounded-[10px] py-10 px-5 text-center text-white overlay"
+            >
+              <h6 class="text-white text-[20px] font-bold mb-16">
+                Thông số chi tiết
+              </h6>
+              <div class="text-left mb-28">
+                <p><b>Màn hình:</b> <span>6.7 inch</span></p>
+                <p><b>Camera sau:</b> <span>80 pixel</span></p>
+                <p><b>Camera trước:</b> <span>120 pixel</span></p>
+              </div>
+              <button class="button">Thêm vào giỏ hàng</button>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <footer
+      class="bg-gradient-to-tr from-[#243041] via-[#007481] to-[#13b000] text-white my-auto mx-0"
+    >
+      <div
+        class="flex justify-center gap-6 py-6 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8"
+      >
+        <p class="hidden md:block">Get connected with us on social networks:</p>
+        <div>
+          <a href="#" class="me-4 text-reset">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="me-4 text-reset">
+            <i class="fab fa-x-twitter"></i>
+          </a>
+          <a href="#" class="me-4 text-reset">
+            <i class="fab fa-google"></i>
+          </a>
+          <a href="#" class="me-4 text-reset">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="me-4 text-reset">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="#" class="me-4 text-reset">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+      </div>
+      <div class="w-full h-px bg-[#fff]"></div>
+      <div
+        class="text-sm mx-auto max-w-7xl py-6 px-2 text-center md:text-justify sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-10 gap-16"
+      >
+        <div class="md:col-span-3">
+          <div class="font-bold uppercase mb-3">
+            <a class="navbar-brand me-5" href="#">
+              <i class="fa-lg fa-solid fa-robot me-2"></i>
+              Cyber Phone
+            </a>
+          </div>
+          <p>
+            We pride ourselves on our efficiency and hard work, but most of all
+            our ability to source you the best quality and best value products
+            and devices in the market.
+          </p>
+        </div>
+        <div class="md:col-span-2">
+          <h2 class="mb-3 uppercase font-bold">Brands</h2>
+          <ul class="grid gap-6">
+            <li class="underline"><a href="#">iPhone</a></li>
+            <li class="underline"><a href="#">Samsung</a></li>
+            <li class="underline"><a href="#">Xiaomi</a></li>
+            <li class="underline"><a href="#">Oppo</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-2">
+          <h2 class="mb-3 uppercase font-bold hidden md:block">Links</h2>
+          <h2 class="mb-3 uppercase font-bold block md:hidden">Useful Links</h2>
+          <ul class="grid gap-6">
+            <li class="underline"><a href="#">Pricing</a></li>
+            <li class="underline"><a href="#">Settings</a></li>
+            <li class="underline"><a href="#">Orders</a></li>
+            <li class="underline"><a href="#">Help</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-3">
+          <h2 class="mb-3 uppercase font-bold">CONTACT</h2>
+          <ul class="grid gap-6">
+            <li>
+              <i class="mr-2 fas fa-home"></i>
+              <a
+                href="https://www.google.com/maps/place/Ho+Chi+Minh+City"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Ho Chi Minh City, VN</a
+              >
+            </li>
+            <li>
+              <i class="mr-2 fas fa-envelope"></i>
+              <a href="mailto:cyberphone@mail.com">cyberphone@mail.com</a>
+            </li>
+            <li>
+              <i class="mr-2 fas fa-phone"></i>
+              <a href="tel:+01234567888">+01 234 567 88</a>
+            </li>
+            <li>
+              <i class="mr-2 fas fa-print"></i>
+              <a href="tel:+01234567889">+01 234 567 89</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="text-center p-4 bg-[#000]/[0.05]">
+        © 2023 Copyright:
+        <a class="underline font-bold" href="#">Cyber Phone</a>
+      </div>
+    </footer>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../controller/main.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+      integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script type="module" src="../controller/main.js"></script>
   </body>
 </html>

@@ -1,21 +1,31 @@
-export class Products {
+export class Product {
   constructor(
     _name,
     _price,
-    _screen,
-    _blackCamera,
-    _frontCamera,
     _img,
     _desc,
-    _type
+    _type,
+    _screen,
+    _backCamera,
+    _frontCamera
   ) {
     this.name = _name;
     this.price = _price;
-    this.screen = _screen;
-    this.blackCamera = _blackCamera;
-    this.frontCamera = _frontCamera;
     this.img = _img;
     this.desc = _desc;
     this.type = _type;
+    this.screen = _screen;
+    this.backCamera = _backCamera;
+    this.frontCamera = _frontCamera;
+  }
+}
+
+export class Cart {
+  constructor(_id, _name, _price, _image, _quality) {
+    this.id = _id;
+    this.name = _name;
+    this.price = _price;
+    this.image = _image;
+    this.quality = _quality;
   }
 }
