@@ -1,5 +1,7 @@
 const BASE_URL = "https://64e1b8e7ab00373588185a1c.mockapi.io/api/v1/products";
 
+let chosenProductId = -1;
+
 document.body.removeAttribute("style");
 
 function startLoading() {
@@ -12,10 +14,10 @@ function endLoading() {
   document.body.style.overflow = "auto";
 }
 
-function deleteProductById(id) {
+function deleteProduct() {
   startLoading();
   axios({
-    url: `${BASE_URL}/${id}`,
+    url: `${BASE_URL}/${chosenProductId}`,
     method: "DELETE",
   })
     .then(res => {
@@ -28,10 +30,8 @@ function deleteProductById(id) {
     });
 }
 
-function deleteProduct(id) {
-  document.getElementById("deleteProductBtn").onclick = () => {
-    deleteProductById(id);
-  };
+function deleteProductGetId(id) {
+  chosenProductId = id;
 }
 
 function readProduct(id) {
@@ -56,7 +56,7 @@ function readProduct(id) {
 function renderProductList(list) {
   let contentHTML = "";
   list.reverse().forEach((product, index) => {
-    let { id, name, price, image, desc, type } = product;
+    let { id, name, price, image, desc } = product;
     let itemString =
       /*html*/
       `
@@ -68,8 +68,8 @@ function renderProductList(list) {
     <td class="px-4 py-3 max-w-[12rem] truncate">${desc}</td>
     <td class="px-4 py-3 items-center justify-end">
       <button
-        id="apple-imac-${id}-dropdown-button"
-        data-dropdown-toggle="apple-imac-${id}-dropdown"
+        id="${id}-dropdown-button"
+        data-dropdown-toggle="${id}-dropdown"
         class="inline-flex items-center text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700 p-1.5 dark:hover-bg-gray-800 text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
         type="button"
       >
@@ -78,10 +78,10 @@ function renderProductList(list) {
         </svg>
       </button>
       <div
-        id="apple-imac-${id}-dropdown"
+        id="${id}-dropdown"
         class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
       >
-        <ul class="py-1 text-sm" aria-labelledby="apple-imac-${id}-dropdown-button">
+        <ul class="py-1 text-sm" aria-labelledby="${id}-dropdown-button">
           <li>
             <button
               type="button"
@@ -125,6 +125,7 @@ function renderProductList(list) {
               data-modal-target="deleteModal"
               data-modal-toggle="deleteModal"
               class="flex w-full items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 text-red-500 dark:hover:text-red-400"
+              onclick="deleteProductGetId(${id})"
             >
               <svg class="w-4 h-4 mr-2" viewbox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path
@@ -184,7 +185,7 @@ function fetchProductList() {
       console.log(res);
       setTimeout(() => {
         endLoading();
-      }, 100);
+      }, 2000);
     })
     .catch(err => {
       console.log(err);
