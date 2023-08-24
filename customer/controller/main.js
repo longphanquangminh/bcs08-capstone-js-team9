@@ -1,20 +1,32 @@
-import { Product } from "../model/model.js";
-import { fetchData, renderProduct, showBgHeader } from "./controller.js";
+import { Cart, Product } from "../model/model.js";
+import {
+  BASE_URL,
+  fetchData,
+  findIndex,
+  renderCart,
+  renderProduct,
+  showBgHeader,
+} from "./controller.js";
 
 let dataProducts = JSON.parse(localStorage.getItem("Products"));
-let products = dataProducts.map((el) => {
-  let { name, price, img, desc, type, screen, backCamera, frontCamera } = el;
-  return new Product(
-    name,
-    price,
-    img,
-    desc,
-    type,
-    screen,
-    backCamera,
-    frontCamera
-  );
-});
+
+if (dataProducts) {
+  var products = dataProducts.map((el) => {
+    let { id, name, price, img, desc, type, screen, backCamera, frontCamera } =
+      el;
+    return new Product(
+      id,
+      name,
+      price,
+      img,
+      desc,
+      type,
+      screen,
+      backCamera,
+      frontCamera
+    );
+  });
+}
 
 const options = [
   {
@@ -31,11 +43,18 @@ const options = [
 
 let cart = [];
 
-window.addEventListener("scroll", showBgHeader);
+let dataJSON = localStorage.getItem("Cart");
+if (dataJSON) {
+  cart = JSON.parse(dataJSON).map((el) => {
+    let { id, name, price, img, screen, backCamera, frontCamera, quality } = el;
+    return new Cart(id, name, price, img, screen, backCamera, frontCamera);
+  });
+}
 
 fetchData();
+renderCart(cart);
 
-// Filter
+// Filter Product
 
 const productFilters = [...options];
 
@@ -51,23 +70,81 @@ document.getElementById("options").innerHTML = productFilters
   })
   .join("");
 
-let categories = [...products];
-
-const filterProducts = (item) => {
-  const filterList = categories.filter((el) => {
-    if (el.type == item) {
-      return el.type;
-    }
-  });
-  renderProduct(filterList);
+window.filterProducts = (item) => {
+  axios
+    .get(BASE_URL)
+    .then((result) => {
+      let filterData = result.data.filter((el) => el.type == item);
+      renderProduct(filterData);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
-window.filterProducts = filterProducts;
+// Add Cart
 
+window.addProductToCart = (id) => {
+  axios
+    .get(`${BASE_URL}/${id}`)
+    .then((result) => {
+      let { id, name, price, img, screen, backCamera, frontCamera } =
+        result.data;
+      let cartItem = new Cart(
+        id,
+        name,
+        price,
+        img,
+        screen,
+        backCamera,
+        frontCamera
+      );
+      let index = findIndex(cartItem.id, cart);
+      if (index == -1) {
+        console.log("Chưa có");
+        cart.push(cartItem);
+      } else {
+        cart[index].quality += 1;
+      }
+      localStorage.setItem("Cart", JSON.stringify(cart));
+      renderCart(cart);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+// Remove Cart
+
+window.removeProduct = (id) => {
+  const index = findIndex(id, cart);
+  cart.splice(index, 1);
+  localStorage.setItem("Cart", JSON.stringify(cart));
+  renderCart(cart);
+};
+
+// Increase / Decrease Quantity
+
+window.increaseProduct = (id) => {
+  let index = findIndex(id, cart);
+  cart[index].quality += 1;
+  renderCart(cart);
+};
+window.decreaseProduct = (id) => {
+  let index = findIndex(id, cart);
+  if (cart[index].quality > 1) {
+    cart[index].quality -= 1;
+  }
+
+  renderCart(cart);
+};
+
+window.addEventListener("scroll", showBgHeader);
+
+// Show/Hide Dropdown
 const optionMenu = document.querySelector(".select-menu");
 const selectBtn = optionMenu.querySelector(".select-btn");
 const optionBtns = optionMenu.querySelectorAll(".option");
-const sBtn_text = optionMenu.querySelector(".sBtn-text");
 
 const showDropdown = () => {
   optionMenu.classList.toggle("active");
@@ -91,6 +168,8 @@ window.addEventListener("click", function (e) {
   }
 });
 
+// Show/Hide Cart Menu
+
 const cartBtn = document.getElementById("cartBtn");
 const overlayBg = document.getElementById("overlay");
 const cartMenu = document.getElementById("cart-menu");
@@ -105,4 +184,22 @@ window.addEventListener("click", function (e) {
     cartMenu.classList.toggle("active");
     overlayBg.classList.toggle("hidden");
   }
+});
+
+document.getElementById("backToStore").addEventListener("click", () => {
+  cartMenu.classList.toggle("active");
+  overlayBg.classList.toggle("hidden");
+});
+
+document.getElementById("removeAllBtn").addEventListener("click", () => {
+  cart = [];
+  renderCart(cart);
+  localStorage.setItem("Cart", JSON.stringify(cart));
+});
+document.getElementById("paymentBtn").addEventListener("click", () => {
+  cart = [];
+  renderCart(cart);
+  localStorage.setItem("Cart", JSON.stringify(cart));
+  cartMenu.classList.toggle("active");
+  overlayBg.classList.toggle("hidden");
 });

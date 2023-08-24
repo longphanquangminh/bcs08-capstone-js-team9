@@ -21,11 +21,17 @@ export class Product {
 }
 
 export class Cart {
-  constructor(_id, _name, _price, _image, _quality) {
+  constructor(_id, _name, _price, _img, _screen, _backCamera, _frontCamera) {
     this.id = _id;
     this.name = _name;
     this.price = _price;
-    this.image = _image;
-    this.quality = _quality;
+    this.img = _img;
+    this.screen = _screen;
+    this.backCamera = _backCamera;
+    this.frontCamera = _frontCamera;
+    this.quality = 1;
+  }
+  total() {
+    return this.quality * this.price;
   }
 }

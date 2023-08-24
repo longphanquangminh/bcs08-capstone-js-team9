@@ -55,118 +55,40 @@
     >
       <div class="py-8 px-6">
         <h3 class="text-3xl font-semibold mb-8">Danh sách mua hàng</h3>
-        <div class="cart-list">
-          <div
-            class="p-4 mb-5 rounded-xl shadow-md hover:shadow-xl duration-300 cart-item"
-          >
-            <div class="flex gap-7 mb-4 item-top">
-              <img src="../../assets/img/admin2.png" class="w-2/5" alt="" />
-              <div class="w-3/5 item-desc">
-                <h4 class="text-xl font-semibold mb-2">Samsung Flip 5</h4>
-                <p>
-                  <span class="">Màn hình:</span>
-                  <span class="text-gray-500">6.7 inch</span>
-                </p>
-                <p>
-                  <span class="">Camera sau:</span>
-                  <span class="text-gray-500">6.7 inch</span>
-                </p>
-                <p>
-                  <span class="">Camera trước:</span>
-                  <span class="text-gray-500">6.7 inch</span>
-                </p>
-                <button
-                  class="p-2 rounded-lg bg-red-500 hover:bg-red-600 duration-300 text-white mt-3"
-                >
-                  Xóa
-                </button>
-              </div>
-            </div>
-            <div class="flex justify-between items-center item-bot">
-              <div class="text-teal-800">
-                <span class="font-semibold">Quantity:</span>
-                <span class="cursor-pointer text-xl mx-1" onclick="">
-                  <i class="fa-solid fa-circle-minus"></i>
-                </span>
-                <span class="text-lg">3</span>
-                <span class="cursor-pointer text-xl mx-1" onclick="">
-                  <i class="fa-solid fa-circle-plus"></i>
-                </span>
-              </div>
-              <div class="text-green-800 font-semibold item-price">
-                25.000.000 vnd
-              </div>
-            </div>
-          </div>
-          <div
-            class="p-4 mb-5 rounded-xl shadow-md hover:shadow-xl duration-300 cart-item"
-          >
-            <div class="flex gap-7 mb-4 item-top">
-              <img src="../../assets/img/admin2.png" class="w-2/5" alt="" />
-              <div class="w-3/5 item-desc">
-                <h4 class="text-xl font-semibold mb-2">Samsung Flip 5</h4>
-                <p>
-                  <span class="">Màn hình:</span>
-                  <span class="text-gray-500">6.7 inch</span>
-                </p>
-                <p>
-                  <span class="">Camera sau:</span>
-                  <span class="text-gray-500">6.7 inch</span>
-                </p>
-                <p>
-                  <span class="">Camera trước:</span>
-                  <span class="text-gray-500">6.7 inch</span>
-                </p>
-                <button
-                  class="p-2 rounded-lg bg-red-500 hover:bg-red-600 duration-300 text-white mt-3"
-                >
-                  Xóa
-                </button>
-              </div>
-            </div>
-            <div class="flex justify-between items-center item-bot">
-              <div class="text-teal-800">
-                <span class="font-semibold">Quantity:</span>
-                <span class="cursor-pointer text-xl mx-1" onclick="">
-                  <i class="fa-solid fa-circle-minus"></i>
-                </span>
-                <span class="text-lg">3</span>
-                <span class="cursor-pointer text-xl mx-1" onclick="">
-                  <i class="fa-solid fa-circle-plus"></i>
-                </span>
-              </div>
-              <div class="text-green-800 font-semibold item-price">
-                25.000.000 vnd
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="cart-list" id="cart-list"></div>
       </div>
       <div class="bg-gray-100 p-6" id="payment">
         <div class="flex justify-between mb-2">
           <span class="text-gray-600">Tổng tiền hàng</span>
-          <span class="text-green-800">25.000.000 vnd</span>
+          <span class="text-green-800" id="totalProduct">25.000.000 vnd</span>
         </div>
         <div class="flex justify-between mb-2">
           <span class="text-gray-600">Tổng tiền phí vận chuyển</span>
-          <span class="text-green-800">25.000 vnd</span>
+          <span class="text-green-800" id="totalDelivery">25.000 vnd</span>
         </div>
         <div class="flex justify-between mb-2 font-semibold">
           <span class="text-gray-600">Tổng thanh toán</span>
-          <span class="text-green-800">25.000.000 vnd</span>
+          <span class="text-green-800" id="totalPayment">25.000.000 vnd</span>
         </div>
         <div class="text-white duration-300 flex justify-between mt-4">
           <div>
             <button
+              id="backToStore"
               class="px-4 py-2 rounded-md bg-green-800 hover:bg-green-900"
             >
               Quay lại
             </button>
-            <button class="px-4 py-2 rounded-md bg-red-500 hover:bg-red-600">
+            <button
+              id="removeAllBtn"
+              class="px-4 py-2 rounded-md bg-red-500 hover:bg-red-600"
+            >
               Xóa hết
             </button>
           </div>
-          <button class="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700">
+          <button
+            id="paymentBtn"
+            class="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700"
+          >
             Thanh toán
           </button>
         </div>
@@ -216,46 +138,10 @@
 
           <ul class="options" id="options"></ul>
         </div>
-        <div class="grid grid-cols-4 gap-8 product-list" id="products">
-          <div class="product-item">
-            <img
-              src="https://images.unsplash.com/photo-1678911820864-e2c567c655d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80"
-              alt=""
-            />
-            <h3>Samsung s23+</h3>
-            <h4>31.990.200 ₫</h4>
-            <span class="type">Samsung</span>
-            <p>
-              Thiết kế đối xứng đậm chất Samsung Galaxy S23 Ultra trở lại với sự
-              khác biệt nổi bật
-            </p>
-            <div class="rating">
-              <div class="stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star-half-stroke"></i>
-              </div>
-              <div class="like">
-                <i class="fa-solid fa-heart"></i>
-              </div>
-            </div>
-            <div
-              class="absolute top-0 left-0 w-full h-full bg-[#000]/[0.5] rounded-[10px] py-10 px-5 text-center text-white overlay"
-            >
-              <h6 class="text-white text-[20px] font-bold mb-16">
-                Thông số chi tiết
-              </h6>
-              <div class="text-left mb-28">
-                <p><b>Màn hình:</b> <span>6.7 inch</span></p>
-                <p><b>Camera sau:</b> <span>80 pixel</span></p>
-                <p><b>Camera trước:</b> <span>120 pixel</span></p>
-              </div>
-              <button class="button">Thêm vào giỏ hàng</button>
-            </div>
-          </div>
-        </div>
+        <div
+          class="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-8 product-list"
+          id="products"
+        ></div>
       </div>
     </section>
 

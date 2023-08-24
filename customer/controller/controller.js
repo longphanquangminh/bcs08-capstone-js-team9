@@ -1,4 +1,5 @@
-const BASE_URL = "https://64e1b8e7ab00373588185a1c.mockapi.io/api/v1/products";
+export const BASE_URL =
+  "https://64e1b8e7ab00373588185a1c.mockapi.io/api/v1/products";
 
 export function fetchData() {
   axios
@@ -6,6 +7,7 @@ export function fetchData() {
     .then((result) => {
       let products = result.data;
       renderProduct(products);
+
       localStorage.setItem("Products", JSON.stringify(products));
     })
     .catch((err) => {
@@ -16,7 +18,8 @@ export function fetchData() {
 export let renderProduct = (data) => {
   let contentHTML = "";
   data.forEach((el) => {
-    let { name, price, img, desc, type, screen, backCamera, frontCamera } = el;
+    let { id, name, price, img, desc, type, screen, backCamera, frontCamera } =
+      el;
     let contentDiv = /*html*/ `
         
         <div class="product-item">
@@ -53,7 +56,7 @@ export let renderProduct = (data) => {
                 <p><b>Camera sau:</b> <span>${backCamera}</span></p>
                 <p><b>Camera trước:</b> <span>${frontCamera}</span></p>
               </div>
-              <button class="button">Thêm vào giỏ hàng</button>
+              <button onclick="addProductToCart('${id}')" class="button">Thêm vào giỏ hàng</button>
             </div>
           </div>
         
@@ -68,3 +71,70 @@ export function showBgHeader() {
     ? (document.querySelector(".header").style.background = "#000")
     : (document.querySelector(".header").style.background = "transparent");
 }
+
+export let renderCart = (cartData) => {
+  let contentHTML = "";
+  let total = 0;
+  cartData.forEach((el) => {
+    let { id, name, price, img, screen, backCamera, frontCamera, quality } = el;
+    let totalProduct = quality * price;
+    let contentItem = /*html*/ `
+    <div
+            class="p-4 mb-5 rounded-xl shadow-md hover:shadow-xl duration-300 cart-item"
+          >
+            <div class="flex gap-7 mb-4 item-top">
+              <img src=${img} class="w-2/5" alt="" />
+              <div class="w-3/5 item-desc">
+                <h4 class="text-xl font-semibold mb-2">${name}</h4>
+                <p>
+                  <span class="">Màn hình:</span>
+                  <span class="text-gray-500">${screen}</span>
+                </p>
+                <p>
+                  <span class="">Camera sau:</span>
+                  <span class="text-gray-500">${backCamera}</span>
+                </p>
+                <p>
+                  <span class="">Camera trước:</span>
+                  <span class="text-gray-500">${frontCamera}</span>
+                </p>
+                <button
+                  class="p-2 rounded-lg bg-red-500 hover:bg-red-600 duration-300 text-white mt-3"
+                  onclick='removeProduct(${id})'
+                >
+                  Xóa
+                </button>
+              </div>
+            </div>
+            <div class="flex justify-between items-center item-bot">
+              <div class="text-teal-800">
+                <span class="font-semibold">Quantity:</span>
+                <span class="cursor-pointer text-xl mx-1" onclick=" decreaseProduct(${id})">
+                  <i class="fa-solid fa-circle-minus"></i>
+                </span>
+                <span class="text-lg">${quality}</span>
+                <span class="cursor-pointer text-xl mx-1" onclick="increaseProduct(${id})">
+                  <i class="fa-solid fa-circle-plus"></i>
+                </span>
+              </div>
+              <div class="text-green-800 font-semibold item-price">
+                $ ${price}
+              </div>
+            </div>
+          </div>
+    
+    `;
+    contentHTML += contentItem;
+    total += totalProduct;
+  });
+
+  document.querySelector("#quantity").innerText = cartData.length;
+  document.querySelector("#cart-list").innerHTML = contentHTML;
+  document.querySelector("#totalProduct").innerHTML = `$ ${total}`;
+  document.querySelector("#totalDelivery").innerHTML = "$ 10";
+  document.querySelector("#totalPayment").innerHTML = `$ ${total - 10}`;
+};
+
+export let findIndex = (id, list) => {
+  return list.findIndex((el) => el.id == id);
+};
