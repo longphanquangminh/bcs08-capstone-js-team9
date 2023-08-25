@@ -1,6 +1,10 @@
 const BASE_URL = "https://64e1b8e7ab00373588185a1c.mockapi.io/api/v1/products";
 
-const timeOutValue = 1000;
+const TIME_OUT_VALUE = 1000;
+
+const NOT_SELECTED_YET = "notSelectedYet";
+const SAMSUNG = "Samsung";
+const IPHONE = "Iphone";
 
 let chosenProductId = -1;
 
@@ -39,7 +43,7 @@ function deleteProduct() {
       console.log(err);
       setTimeout(() => {
         endLoading();
-      }, timeOutValue);
+      }, TIME_OUT_VALUE);
     });
 }
 
@@ -109,14 +113,14 @@ function readProduct(id) {
       document.getElementById("typePreview").innerHTML = res.data.type;
       setTimeout(() => {
         endLoading();
-      }, timeOutValue);
+      }, TIME_OUT_VALUE);
     })
     .catch(err => {
       console.log(err);
       resetPreview();
       setTimeout(() => {
         endLoading();
-      }, timeOutValue);
+      }, TIME_OUT_VALUE);
     });
 }
 
@@ -146,7 +150,7 @@ function renderProductList(list) {
           class="flex w-full items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200"
           onclick="editProduct(${id})"
         >
-          <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/timeOutValue/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/TIME_OUT_VALUE/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
             <path
               fill-rule="evenodd"
@@ -165,7 +169,7 @@ function renderProductList(list) {
           class="flex w-full items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200"
           onclick="readProduct(${id})"
         >
-          <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/timeOutValue/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/TIME_OUT_VALUE/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
             <path
               fill-rule="evenodd"
@@ -184,7 +188,7 @@ function renderProductList(list) {
           class="flex w-full items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 text-red-500 dark:hover:text-red-400"
           onclick="getProductId(${id})"
         >
-          <svg class="w-4 h-4 mr-2" viewbox="0 0 14 15" fill="none" xmlns="http://www.w3.org/timeOutValue/svg" aria-hidden="true">
+          <svg class="w-4 h-4 mr-2" viewbox="0 0 14 15" fill="none" xmlns="http://www.w3.org/TIME_OUT_VALUE/svg" aria-hidden="true">
             <path
               fill-rule="evenodd"
               clip-rule="evenodd"
@@ -224,13 +228,13 @@ function editProduct(id) {
       document.getElementById("typeUpdate").value = res.data.type;
       setTimeout(() => {
         endLoading();
-      }, timeOutValue);
+      }, TIME_OUT_VALUE);
     })
     .catch(err => {
       console.log(err);
       setTimeout(() => {
         endLoading();
-      }, timeOutValue);
+      }, TIME_OUT_VALUE);
     });
 }
 
@@ -254,14 +258,14 @@ function addProduct() {
       fetchProductList();
       setTimeout(() => {
         endLoading();
-      }, timeOutValue);
+      }, TIME_OUT_VALUE);
       console.log(res);
     })
     .catch(err => {
       console.log(err);
       setTimeout(() => {
         endLoading();
-      }, timeOutValue);
+      }, TIME_OUT_VALUE);
     });
 }
 
@@ -285,7 +289,7 @@ function updateProduct() {
       fetchProductList();
       setTimeout(() => {
         endLoading();
-      }, timeOutValue);
+      }, TIME_OUT_VALUE);
       console.log(res);
       updateProductModalHide();
     })
@@ -293,7 +297,7 @@ function updateProduct() {
       console.log(err);
       setTimeout(() => {
         endLoading();
-      }, timeOutValue);
+      }, TIME_OUT_VALUE);
       updateProductModalHide();
     });
 }
@@ -309,13 +313,13 @@ function fetchProductList() {
       console.log(res);
       setTimeout(() => {
         endLoading();
-      }, timeOutValue);
+      }, TIME_OUT_VALUE);
     })
     .catch(err => {
       console.log(err);
       setTimeout(() => {
         endLoading();
-      }, timeOutValue);
+      }, TIME_OUT_VALUE);
     });
 }
 
@@ -331,3 +335,133 @@ function resetPreview() {
   document.getElementById("descriptionPreview").innerHTML = "";
   document.getElementById("typePreview").innerHTML = "";
 }
+
+function searchProduct() {
+  let searchValue = convertVietnameseToEnglish(document.getElementById("search").value.trim().toLowerCase());
+  if (searchValue.trim() == "") {
+    fetchProductList();
+    return;
+  }
+  startLoading();
+  axios({
+    url: `${BASE_URL}?name=${searchValue}`,
+    method: "GET",
+  })
+    .then(res => {
+      renderProductList(res.data);
+      setTimeout(() => {
+        endLoading();
+      }, TIME_OUT_VALUE);
+    })
+    .catch(err => {
+      console.log(err);
+      setTimeout(() => {
+        endLoading();
+      }, TIME_OUT_VALUE);
+    });
+}
+
+function convertVietnameseToEnglish(input) {
+  const diacriticsMap = {
+    à: "a",
+    á: "a",
+    ả: "a",
+    ã: "a",
+    ạ: "a",
+    ă: "a",
+    ằ: "a",
+    ắ: "a",
+    ẳ: "a",
+    ẵ: "a",
+    ặ: "a",
+    ầ: "a",
+    ấ: "a",
+    ẩ: "a",
+    ẫ: "a",
+    ậ: "a",
+    â: "a",
+    è: "e",
+    é: "e",
+    ẻ: "e",
+    ẽ: "e",
+    ẹ: "e",
+    ê: "e",
+    ề: "e",
+    ế: "e",
+    ể: "e",
+    ễ: "e",
+    ệ: "e",
+    ì: "i",
+    í: "i",
+    ỉ: "i",
+    ĩ: "i",
+    ị: "i",
+    ò: "o",
+    ó: "o",
+    ỏ: "o",
+    õ: "o",
+    ọ: "o",
+    ô: "o",
+    ồ: "o",
+    ố: "o",
+    ổ: "o",
+    ỗ: "o",
+    ộ: "o",
+    ổ: "o",
+    ố: "o",
+    ổ: "o",
+    ỗ: "o",
+    ộ: "o",
+    ơ: "o",
+    ờ: "o",
+    ớ: "o",
+    ở: "o",
+    ỡ: "o",
+    ợ: "o",
+    ù: "u",
+    ú: "u",
+    ủ: "u",
+    ũ: "u",
+    ụ: "u",
+    ư: "u",
+    ừ: "u",
+    ứ: "u",
+    ử: "u",
+    ữ: "u",
+    ự: "u",
+    ỳ: "y",
+    ý: "y",
+    ỷ: "y",
+    ỹ: "y",
+    ỵ: "y",
+    đ: "d",
+  };
+
+  return input.replace(/[àáảãạăằắẳẵặầấẩẫậâèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộổốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵđ]/g, match => diacriticsMap[match] || match);
+}
+
+function removeExtraSpaces(inputString) {
+  return inputString.replace(/\s+/g, " ").trim();
+}
+
+function applyNumberInputStyles() {
+  const styleElement = document.createElement("style");
+
+  const cssRules = `
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+    `;
+
+  styleElement.appendChild(document.createTextNode(cssRules));
+
+  document.head.appendChild(styleElement);
+}
+
+applyNumberInputStyles();
