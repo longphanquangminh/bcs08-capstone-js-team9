@@ -32,6 +32,7 @@ function deleteProduct() {
 
 function getProductId(id) {
   chosenProductId = id;
+  console.log(id);
 }
 
 function readProduct(id) {
@@ -56,15 +57,15 @@ function readProduct(id) {
 function renderProductList(list) {
   let contentHTML = "";
   list.reverse().forEach((product, index) => {
-    let { id, name, price, image, desc, type } = product;
+    let { id, name, price, img, desc, type } = product;
     let itemString =
       /*html*/
       `
     <tr class="border-b dark:border-gray-700">
     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">${index + 1}</th>
     <td class="px-4 py-3">${name}</td>
-    <td class="px-4 py-3">${new Intl.NumberFormat().format((price * 1).toFixed(2))}</td>
-    <td class="px-4 py-3 max-w-[12rem]"><img class="w-full" src="${image}" alt="${id}" /></td>
+    <td class="px-4 py-3">$${new Intl.NumberFormat().format((price * 1).toFixed(2))}</td>
+    <td class="px-4 py-3 max-w-[12rem]"><img class="w-full m-auto" src="${img}" alt="${id}" /></td>
     <td class="px-4 py-3 max-w-[12rem] truncate">${desc}</td>
     <td class="px-4 py-3 items-center justify-end">
       <button
@@ -158,7 +159,7 @@ function editProduct(id) {
     .then(res => {
       document.getElementById("nameUpdate").value = res.data.name;
       document.getElementById("priceUpdate").value = res.data.price;
-      document.getElementById("photoUpdate").value = res.data.image;
+      document.getElementById("photoUpdate").value = res.data.img;
       document.getElementById("descriptionUpdate").value = res.data.desc;
     })
     .catch(err => {
@@ -169,11 +170,11 @@ function editProduct(id) {
 function addProduct() {
   let name = document.getElementById("name").value;
   let price = document.getElementById("price").value * 1;
-  let image = document.getElementById("photo").value;
+  let img = document.getElementById("photo").value;
   let desc = document.getElementById("description").value;
   // let type = document.getElementById("type").value;
-  // let product = new Product(name, price, image, desc, type);
-  let product = new Product(name, price, image, desc, "SUV");
+  // let product = new Product(name, price, img, desc, type);
+  let product = new Product(name, price, img, desc, "SUV");
   startLoading();
   axios({
     url: BASE_URL,
@@ -194,11 +195,11 @@ function addProduct() {
 function updateProduct() {
   let name = document.getElementById("nameUpdate").value;
   let price = document.getElementById("priceUpdate").value * 1;
-  let image = document.getElementById("photoUpdate").value;
+  let img = document.getElementById("photoUpdate").value;
   let desc = document.getElementById("descriptionUpdate").value;
   // let type = document.getElementById("type").value;
-  // let product = new Product(name, price, image, desc, type);
-  let product = new Product(name, price, image, desc);
+  // let product = new Product(name, price, img, desc, type);
+  let product = new Product(name, price, img, desc);
   startLoading();
   axios({
     url: `${BASE_URL}/${chosenProductId}`,

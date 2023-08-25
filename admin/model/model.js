@@ -1,8 +1,11 @@
 class Product {
-  constructor(_name, _price, _image, _desc, _type) {
+  constructor(_name, _price, _screen, _backCamera, frontCamera, _img, _desc, _type) {
     this.name = _name;
     this.price = _price;
-    this.image = _image;
+    this.screen = _screen;
+    this.backCamera = _backCamera;
+    this.frontCamera = frontCamera;
+    this.img = _img;
     this.desc = _desc;
     this.type = _type;
   }
