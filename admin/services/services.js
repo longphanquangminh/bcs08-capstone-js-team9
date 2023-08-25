@@ -42,34 +42,42 @@ function deleteProduct() {
 
 function createProductModalShow() {
   createProductModal.show();
+  // document.body.style.overflow = "hidden";
 }
 
 function createProductModalHide() {
   createProductModal.hide();
+  // document.body.style.overflow = "auto";
 }
 
 function updateProductModalShow() {
   updateProductModal.show();
+  // document.body.style.overflow = "hidden";
 }
 
 function updateProductModalHide() {
   updateProductModal.hide();
+  // document.body.style.overflow = "auto";
 }
 
 function readProductModalShow() {
   readProductModal.show();
+  // document.body.style.overflow = "hidden";
 }
 
 function readProductModalHide() {
   readProductModal.hide();
+  // document.body.style.overflow = "auto";
 }
 
 function deleteProductModalShow() {
   deleteProductModal.show();
+  // document.body.style.overflow = "hidden";
 }
 
 function deleteProductModalHide() {
   deleteProductModal.hide();
+  // document.body.style.overflow = "auto";
 }
 
 function getProductId(id) {
@@ -210,11 +218,13 @@ function editProduct(id) {
 function addProduct() {
   let name = document.getElementById("name").value;
   let price = document.getElementById("price").value * 1;
+  let screen = document.getElementById("screen").value;
   let img = document.getElementById("photo").value;
+  let backCamera = document.getElementById("backCamera").value;
+  let frontCamera = document.getElementById("frontCamera").value;
   let desc = document.getElementById("description").value;
-  // let type = document.getElementById("type").value;
-  // let product = new Product(name, price, img, desc, type);
-  let product = new Product(name, price, img, desc, "SUV");
+  let type = document.getElementById("type").value;
+  let product = new Product(name, price, screen, backCamera, frontCamera, img, desc, type);
   startLoading();
   axios({
     url: BASE_URL,
@@ -250,10 +260,12 @@ function updateProduct() {
       fetchProductList();
       endLoading();
       console.log(res);
+      updateProductModalHide();
     })
     .catch(err => {
       console.log(err);
       endLoading();
+      updateProductModalHide();
     });
 }
 
