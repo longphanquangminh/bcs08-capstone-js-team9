@@ -2,8 +2,6 @@ const BASE_URL = "https://64e1b8e7ab00373588185a1c.mockapi.io/api/v1/products";
 
 let chosenProductId = -1;
 
-document.body.removeAttribute("style");
-
 const createProductModalEl = document.getElementById("createProductModal");
 const createProductModal = new Modal(createProductModalEl);
 const updateProductModalEl = document.getElementById("updateProductModal");
@@ -21,6 +19,7 @@ function startLoading() {
 function endLoading() {
   document.getElementById("spinner").style.display = "none";
   document.body.style.overflow = "auto";
+  document.body.removeAttribute("style");
 }
 
 function deleteProduct() {
@@ -42,7 +41,7 @@ function deleteProduct() {
 
 function createProductModalShow() {
   createProductModal.show();
-  // document.body.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
 }
 
 function createProductModalHide() {
@@ -98,6 +97,10 @@ function readProduct(id) {
     .then(res => {
       document.getElementById("namePreview").innerHTML = res.data.name;
       document.getElementById("pricePreview").innerHTML = new Intl.NumberFormat().format((res.data.price * 1).toFixed(2));
+      document.getElementById("screenPreview").innerHTML = res.data.screen;
+      document.getElementById("backCameraPreview").innerHTML = res.data.backCamera;
+      document.getElementById("frontCameraPreview").innerHTML = res.data.frontCamera;
+      document.getElementById("photoPreview").innerHTML = `<img class="w-[25%] m-auto" src="${res.data.img}" alt="${id}" />`;
       document.getElementById("descriptionPreview").innerHTML = res.data.desc;
       document.getElementById("typePreview").innerHTML = res.data.type;
       endLoading();
@@ -299,6 +302,10 @@ fetchProductList();
 function resetPreview() {
   document.getElementById("namePreview").innerHTML = "";
   document.getElementById("pricePreview").innerHTML = "";
+  document.getElementById("screenPreview").innerHTML = "";
+  document.getElementById("backCameraPreview").innerHTML = "";
+  document.getElementById("frontCameraPreview").innerHTML = "";
+  document.getElementById("photoPreview").innerHTML = "";
   document.getElementById("descriptionPreview").innerHTML = "";
   document.getElementById("typePreview").innerHTML = "";
 }
