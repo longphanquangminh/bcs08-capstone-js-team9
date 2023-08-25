@@ -205,8 +205,12 @@ function editProduct(id) {
     .then(res => {
       document.getElementById("nameUpdate").value = res.data.name;
       document.getElementById("priceUpdate").value = res.data.price;
+      document.getElementById("screenUpdate").value = res.data.screen;
       document.getElementById("photoUpdate").value = res.data.img;
+      document.getElementById("backCameraUpdate").value = res.data.backCamera;
+      document.getElementById("frontCameraUpdate").value = res.data.frontCamera;
       document.getElementById("descriptionUpdate").value = res.data.desc;
+      document.getElementById("typeUpdate").value = res.data.type;
       endLoading();
     })
     .catch(err => {
@@ -245,11 +249,13 @@ function addProduct() {
 function updateProduct() {
   let name = document.getElementById("nameUpdate").value;
   let price = document.getElementById("priceUpdate").value * 1;
+  let screen = document.getElementById("screenUpdate").value;
   let img = document.getElementById("photoUpdate").value;
+  let backCamera = document.getElementById("backCameraUpdate").value;
+  let frontCamera = document.getElementById("frontCameraUpdate").value;
   let desc = document.getElementById("descriptionUpdate").value;
-  // let type = document.getElementById("type").value;
-  // let product = new Product(name, price, img, desc, type);
-  let product = new Product(name, price, img, desc);
+  let type = document.getElementById("typeUpdate").value;
+  let product = new Product(name, price, screen, backCamera, frontCamera, img, desc, type);
   startLoading();
   axios({
     url: `${BASE_URL}/${chosenProductId}`,

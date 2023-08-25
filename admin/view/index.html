@@ -451,14 +451,47 @@
                 required=""
               />
             </div>
-            <div class="sm:col-span-2">
+            <div>
               <label for="photoUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo</label>
               <input
                 type="text"
                 name="photoUpdate"
                 id="photoUpdate"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-sky-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
-                placeholder="Type product image"
+                placeholder="Type product image link"
+                required=""
+              />
+            </div>
+            <div>
+              <label for="screenUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Screen</label>
+              <input
+                type="text"
+                name="screenUpdate"
+                id="screenUpdate"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-sky-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
+                placeholder="Type screen information"
+                required=""
+              />
+            </div>
+            <div>
+              <label for="backCameraUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Back camera</label>
+              <input
+                type="text"
+                name="backCameraUpdate"
+                id="backCameraUpdate"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-sky-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
+                placeholder="Type back camera information"
+                required=""
+              />
+            </div>
+            <div>
+              <label for="frontCameraUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Front camera</label>
+              <input
+                type="text"
+                name="frontCameraUpdate"
+                id="frontCameraUpdate"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-sky-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
+                placeholder="Type front camera information"
                 required=""
               />
             </div>
@@ -471,6 +504,17 @@
                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-sky-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
                 placeholder="Write a description..."
               ></textarea>
+            </div>
+            <div class="sm:col-span-2">
+              <label for="typeUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
+              <select
+                id="typeUpdate"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              >
+                <option value="notSelectedYet" selected>Select type</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Iphone">Iphone</option>
+              </select>
             </div>
           </div>
           <div class="flex items-center space-x-4">
