@@ -1,5 +1,7 @@
 const BASE_URL = "https://64e1b8e7ab00373588185a1c.mockapi.io/api/v1/products";
 
+const timeOutValue = 1000;
+
 let chosenProductId = -1;
 
 const createProductModalEl = document.getElementById("createProductModal");
@@ -35,7 +37,9 @@ function deleteProduct() {
     })
     .catch(err => {
       console.log(err);
-      endLoading();
+      setTimeout(() => {
+        endLoading();
+      }, timeOutValue);
     });
 }
 
@@ -103,12 +107,16 @@ function readProduct(id) {
       document.getElementById("photoPreview").innerHTML = `<img class="w-[25%] m-auto" src="${res.data.img}" alt="${id}" />`;
       document.getElementById("descriptionPreview").innerHTML = res.data.desc;
       document.getElementById("typePreview").innerHTML = res.data.type;
-      endLoading();
+      setTimeout(() => {
+        endLoading();
+      }, timeOutValue);
     })
     .catch(err => {
       console.log(err);
       resetPreview();
-      endLoading();
+      setTimeout(() => {
+        endLoading();
+      }, timeOutValue);
     });
 }
 
@@ -138,7 +146,7 @@ function renderProductList(list) {
           class="flex w-full items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200"
           onclick="editProduct(${id})"
         >
-          <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/timeOutValue/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
             <path
               fill-rule="evenodd"
@@ -157,7 +165,7 @@ function renderProductList(list) {
           class="flex w-full items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200"
           onclick="readProduct(${id})"
         >
-          <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/timeOutValue/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
             <path
               fill-rule="evenodd"
@@ -176,7 +184,7 @@ function renderProductList(list) {
           class="flex w-full items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 text-red-500 dark:hover:text-red-400"
           onclick="getProductId(${id})"
         >
-          <svg class="w-4 h-4 mr-2" viewbox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <svg class="w-4 h-4 mr-2" viewbox="0 0 14 15" fill="none" xmlns="http://www.w3.org/timeOutValue/svg" aria-hidden="true">
             <path
               fill-rule="evenodd"
               clip-rule="evenodd"
@@ -214,11 +222,15 @@ function editProduct(id) {
       document.getElementById("frontCameraUpdate").value = res.data.frontCamera;
       document.getElementById("descriptionUpdate").value = res.data.desc;
       document.getElementById("typeUpdate").value = res.data.type;
-      endLoading();
+      setTimeout(() => {
+        endLoading();
+      }, timeOutValue);
     })
     .catch(err => {
       console.log(err);
-      endLoading();
+      setTimeout(() => {
+        endLoading();
+      }, timeOutValue);
     });
 }
 
@@ -240,12 +252,16 @@ function addProduct() {
   })
     .then(res => {
       fetchProductList();
-      endLoading();
+      setTimeout(() => {
+        endLoading();
+      }, timeOutValue);
       console.log(res);
     })
     .catch(err => {
       console.log(err);
-      endLoading();
+      setTimeout(() => {
+        endLoading();
+      }, timeOutValue);
     });
 }
 
@@ -267,13 +283,17 @@ function updateProduct() {
   })
     .then(res => {
       fetchProductList();
-      endLoading();
+      setTimeout(() => {
+        endLoading();
+      }, timeOutValue);
       console.log(res);
       updateProductModalHide();
     })
     .catch(err => {
       console.log(err);
-      endLoading();
+      setTimeout(() => {
+        endLoading();
+      }, timeOutValue);
       updateProductModalHide();
     });
 }
@@ -289,11 +309,13 @@ function fetchProductList() {
       console.log(res);
       setTimeout(() => {
         endLoading();
-      }, 2000);
+      }, timeOutValue);
     })
     .catch(err => {
       console.log(err);
-      endLoading();
+      setTimeout(() => {
+        endLoading();
+      }, timeOutValue);
     });
 }
 
