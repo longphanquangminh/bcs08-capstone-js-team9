@@ -194,8 +194,6 @@ function renderProductList(list) {
       <li>
         <button
           type="button"
-          data-modal-target="updateProductModal"
-          data-modal-toggle="updateProductModal"
           class="flex w-full items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200"
           onclick="editProduct(${id})"
         >
@@ -287,6 +285,34 @@ function editProduct(id) {
     });
 }
 
+function validateProductCreate(product) {
+  let { name, price, screen, backCamera, frontCamera, img, desc, type } = product;
+  return (
+    checkLength("name-error", name, 2, 50) &
+    checkPrice("price-error", price) &
+    checkLength("screen-error", screen, 2, 50) &
+    checkLength("backCamera-error", backCamera, 2, 50) &
+    checkLength("frontCamera-error", frontCamera, 2, 50) &
+    checkImageUri("photo-error", img) &
+    checkLength("description-error", desc, 2, 50) &
+    checkChosenType("type-error", type)
+  );
+}
+
+function validateProductUpdate(product) {
+  let { name, price, screen, backCamera, frontCamera, img, desc, type } = product;
+  return (
+    checkLength("nameUpdate-error", name, 2, 50) &
+    checkPrice("priceUpdate-error", price) &
+    checkLength("screenUpdate-error", screen, 2, 50) &
+    checkLength("backCameraUpdate-error", backCamera, 2, 50) &
+    checkLength("frontCameraUpdate-error", frontCamera, 2, 50) &
+    checkImageUri("photoUpdate-error", img) &
+    checkLength("descriptionUpdate-error", desc, 2, 50) &
+    checkChosenType("typeUpdate-error", type)
+  );
+}
+
 function addProduct() {
   let name = document.getElementById("name").value;
   let price = document.getElementById("price").value * 1;
@@ -297,25 +323,31 @@ function addProduct() {
   let desc = document.getElementById("description").value;
   let type = document.getElementById("type").value;
   let product = new Product(name, price, screen, backCamera, frontCamera, img, desc, type);
-  startLoading();
-  axios({
-    url: BASE_URL,
-    method: "POST",
-    data: product,
-  })
-    .then(res => {
-      fetchProductList();
-      setTimeout(() => {
-        endLoading();
-      }, TIME_OUT_VALUE);
-      console.log(res);
+  if (validateProductCreate(product)) {
+    startLoading();
+    axios({
+      url: BASE_URL,
+      method: "POST",
+      data: product,
     })
-    .catch(err => {
-      console.log(err);
-      setTimeout(() => {
-        endLoading();
-      }, TIME_OUT_VALUE);
-    });
+      .then(res => {
+        fetchProductList();
+        createProductModalHide();
+        setTimeout(() => {
+          endLoading();
+        }, TIME_OUT_VALUE);
+        console.log(res);
+        resetPreview();
+      })
+      .catch(err => {
+        console.log(err);
+        createProductModalHide();
+        setTimeout(() => {
+          endLoading();
+        }, TIME_OUT_VALUE);
+        resetPreview();
+      });
+  }
 }
 
 function updateProduct() {
@@ -328,27 +360,29 @@ function updateProduct() {
   let desc = document.getElementById("descriptionUpdate").value;
   let type = document.getElementById("typeUpdate").value;
   let product = new Product(name, price, screen, backCamera, frontCamera, img, desc, type);
-  startLoading();
-  axios({
-    url: `${BASE_URL}/${chosenProductId}`,
-    method: "PUT",
-    data: product,
-  })
-    .then(res => {
-      fetchProductList();
-      setTimeout(() => {
-        endLoading();
-      }, TIME_OUT_VALUE);
-      console.log(res);
-      updateProductModalHide();
+  if (validateProductUpdate(product)) {
+    startLoading();
+    axios({
+      url: `${BASE_URL}/${chosenProductId}`,
+      method: "PUT",
+      data: product,
     })
-    .catch(err => {
-      console.log(err);
-      setTimeout(() => {
-        endLoading();
-      }, TIME_OUT_VALUE);
-      updateProductModalHide();
-    });
+      .then(res => {
+        fetchProductList();
+        setTimeout(() => {
+          endLoading();
+        }, TIME_OUT_VALUE);
+        console.log(res);
+        updateProductModalHide();
+      })
+      .catch(err => {
+        console.log(err);
+        setTimeout(() => {
+          endLoading();
+        }, TIME_OUT_VALUE);
+        updateProductModalHide();
+      });
+  }
 }
 
 function fetchProductList() {
@@ -375,6 +409,24 @@ function fetchProductList() {
 fetchProductList();
 
 function resetPreview() {
+  document.getElementById("name").value = "";
+  document.getElementById("price").value = "";
+  document.getElementById("screen").value = "";
+  document.getElementById("backCamera").value = "";
+  document.getElementById("frontCamera").value = "";
+  document.getElementById("photo").value = "";
+  document.getElementById("description").value = "";
+  document.getElementById("type").value = "";
+
+  document.getElementById("nameUpdate").value = "";
+  document.getElementById("priceUpdate").value = "";
+  document.getElementById("screenUpdate").value = "";
+  document.getElementById("backCameraUpdate").value = "";
+  document.getElementById("frontCameraUpdate").value = "";
+  document.getElementById("photoUpdate").value = "";
+  document.getElementById("descriptionUpdate").value = "";
+  document.getElementById("typeUpdate").value = "";
+
   document.getElementById("namePreview").innerHTML = "";
   document.getElementById("pricePreview").innerHTML = "";
   document.getElementById("screenPreview").innerHTML = "";

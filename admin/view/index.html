@@ -101,9 +101,8 @@
         <h1 class="text-3xl capitalize text-white">Product Management</h1>
         <button
           class="capitalize bg-[#294d5c] px-3 py-1 rounded-lg text-[#f7f7f7] hover:bg-[#fff] hover:text-[#000] duration-300"
-          data-modal-target="createProductModal"
-          data-modal-toggle="createProductModal"
           type="button"
+          onclick="createProductModalShow()"
         >
           <i class="fa-solid fa-circle-plus"></i>
           <span>Add Product</span>
@@ -319,13 +318,12 @@
         <!-- Modal content -->
         <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
           <!-- Modal header -->
-          <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+          <div class="flex justify-between items-center pb-1 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Add Product</h3>
             <button
               type="button"
               class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-              data-modal-target="createProductModal"
-              data-modal-toggle="createProductModal"
+              onclick="createProductModalHide()"
             >
               <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -349,6 +347,7 @@
                 placeholder="Type product name"
                 required=""
               />
+              <span id="name-error" class="text-red-600"></span>
             </div>
             <div>
               <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
@@ -361,6 +360,7 @@
                 placeholder="Type product price"
                 required=""
               />
+              <span id="price-error" class="text-red-600"></span>
             </div>
             <div>
               <label for="photo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo</label>
@@ -372,6 +372,7 @@
                 placeholder="Type product image link"
                 required=""
               />
+              <span id="photo-error" class="text-red-600"></span>
             </div>
             <div>
               <label for="screen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Screen</label>
@@ -383,6 +384,7 @@
                 placeholder="Type screen information"
                 required=""
               />
+              <span id="screen-error" class="text-red-600"></span>
             </div>
             <div>
               <label for="backCamera" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Back camera</label>
@@ -394,6 +396,7 @@
                 placeholder="Type back camera information"
                 required=""
               />
+              <span id="backCamera-error" class="text-red-600"></span>
             </div>
             <div>
               <label for="frontCamera" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Front camera</label>
@@ -405,16 +408,18 @@
                 placeholder="Type front camera information"
                 required=""
               />
+              <span id="frontCamera-error" class="text-red-600"></span>
             </div>
             <div class="sm:col-span-2">
               <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
               <textarea
                 id="description"
                 name="description"
-                rows="5"
+                rows="1"
                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-sky-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
                 placeholder="Write a description..."
               ></textarea>
+              <span id="description-error" class="text-red-600"></span>
             </div>
             <div class="sm:col-span-2">
               <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
@@ -426,12 +431,11 @@
                 <option value="Samsung">Samsung</option>
                 <option value="Iphone">Iphone</option>
               </select>
+              <span id="type-error" class="text-red-600"></span>
             </div>
           </div>
           <button
             class="text-white inline-flex items-center bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
-            data-modal-target="createProductModal"
-            data-modal-toggle="createProductModal"
             onclick="addProduct()"
           >
             <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -457,13 +461,12 @@
         <!-- Modal content -->
         <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
           <!-- Modal header -->
-          <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+          <div class="flex justify-between items-center pb-1 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Update Product</h3>
             <button
               type="button"
               class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
               onclick="updateProductModalHide()"
-              data-modal-hide="updateProductModal"
             >
               <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -487,6 +490,7 @@
                 placeholder="Type product name"
                 required=""
               />
+              <span id="nameUpdate-error" class="text-red-600"></span>
             </div>
             <div>
               <label for="priceUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
@@ -499,6 +503,7 @@
                 placeholder="Type product price"
                 required=""
               />
+              <span id="priceUpdate-error" class="text-red-600"></span>
             </div>
             <div>
               <label for="photoUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo</label>
@@ -510,6 +515,7 @@
                 placeholder="Type product image link"
                 required=""
               />
+              <span id="photoUpdate-error" class="text-red-600"></span>
             </div>
             <div>
               <label for="screenUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Screen</label>
@@ -521,6 +527,7 @@
                 placeholder="Type screen information"
                 required=""
               />
+              <span id="screenUpdate-error" class="text-red-600"></span>
             </div>
             <div>
               <label for="backCameraUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Back camera</label>
@@ -532,6 +539,7 @@
                 placeholder="Type back camera information"
                 required=""
               />
+              <span id="backCameraUpdate-error" class="text-red-600"></span>
             </div>
             <div>
               <label for="frontCameraUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Front camera</label>
@@ -543,16 +551,18 @@
                 placeholder="Type front camera information"
                 required=""
               />
+              <span id="frontCameraUpdate-error" class="text-red-600"></span>
             </div>
             <div class="sm:col-span-2">
               <label for="descriptionUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
               <textarea
                 id="descriptionUpdate"
                 name="descriptionUpdate"
-                rows="5"
+                rows="1"
                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-sky-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
                 placeholder="Write a description..."
               ></textarea>
+              <span id="descriptionUpdate-error" class="text-red-600"></span>
             </div>
             <div class="sm:col-span-2">
               <label for="typeUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
@@ -564,12 +574,12 @@
                 <option value="Samsung">Samsung</option>
                 <option value="Iphone">Iphone</option>
               </select>
+              <span id="typeUpdate-error" class="text-red-600"></span>
             </div>
           </div>
           <div class="flex items-center space-x-4">
             <button
               class="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
-              data-modal-hide="updateProductModal"
               onclick="updateProduct()"
             >
               Update product
@@ -694,6 +704,8 @@
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+  <!-- validator js cdn -->
+  <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
   <script>
     document.getElementById("mobile-menu").classList.toggle("hidden");
     document.getElementById("hamburger").addEventListener("click", () => {
@@ -701,6 +713,7 @@
     });
   </script>
   <script src="../model/model.js"></script>
+  <script src="../validate/validate.js"></script>
   <script src="../services/services.js"></script>
   <script src="../controller/controller.js"></script>
 </html>
