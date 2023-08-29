@@ -30,6 +30,7 @@ function endLoading() {
 
 function deleteProduct() {
   startLoading();
+  document.getElementById("simple-search").value = "";
   deleteProductModalHide();
   axios({
     url: `${BASE_URL}/${chosenProductId}`,
@@ -124,10 +125,58 @@ function readProduct(id) {
     });
 }
 
+function setDefaultSort() {
+  startLoading();
+  axios({
+    url: BASE_URL,
+    method: "GET",
+  })
+    .then(res => {
+      renderProductList(res.data);
+      endLoading();
+    })
+    .catch(err => {
+      console.log(err);
+      endLoading();
+    });
+}
+
+function sortLowToHigh() {
+  startLoading();
+  axios({
+    url: BASE_URL,
+    method: "GET",
+  })
+    .then(res => {
+      renderProductList(res.data.sort((a, b) => b.price - a.price));
+      endLoading();
+    })
+    .catch(err => {
+      console.log(err);
+      endLoading();
+    });
+}
+
+function sortHighToLow() {
+  startLoading();
+  axios({
+    url: BASE_URL,
+    method: "GET",
+  })
+    .then(res => {
+      renderProductList(res.data.sort((a, b) => a.price - b.price));
+      endLoading();
+    })
+    .catch(err => {
+      console.log(err);
+      endLoading();
+    });
+}
+
 function renderProductList(list) {
   let contentHTML = "";
   list.reverse().forEach((product, index) => {
-    let { id, name, price, img, desc, type } = product;
+    let { id, name, price, img, desc } = product;
     let itemString =
       /*html*/
       `
@@ -337,7 +386,7 @@ function resetPreview() {
 }
 
 function searchProduct() {
-  let searchValue = convertVietnameseToEnglish(document.getElementById("search").value.trim().toLowerCase());
+  let searchValue = convertVietnameseToEnglish(removeExtraSpaces(document.getElementById("simple-search").value.trim().toLowerCase()));
   if (searchValue.trim() == "") {
     fetchProductList();
     return;
