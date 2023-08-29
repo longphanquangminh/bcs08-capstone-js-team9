@@ -50,7 +50,7 @@ function deleteProduct() {
 
 function createProductModalShow() {
   createProductModal.show();
-  document.body.style.overflow = "hidden";
+  // document.body.style.overflow = "hidden";
   resetPreview();
 }
 
