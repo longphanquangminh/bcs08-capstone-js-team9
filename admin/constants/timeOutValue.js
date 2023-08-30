@@ -1,0 +1,1 @@
+const TIME_OUT_VALUE = 1000;
