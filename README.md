@@ -1,1 +1,1 @@
-Deployed link: https://bc08-capstone-js-team9.onrender.com
+Deployed link: https://bcs08-capstone-js-team9.vercel.app
