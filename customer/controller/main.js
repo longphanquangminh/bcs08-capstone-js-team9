@@ -1,4 +1,4 @@
-import { Cart } from "../model/model.js";
+import { Cart, Product } from "../model/model.js";
 import {
   BASE_URL,
   fetchData,
@@ -10,6 +10,11 @@ import {
 } from "./controller.js";
 
 const options = [
+  {
+    img: "../../assets/img/logo.png",
+    text: "Tất cả sản phẩm",
+    type: "all",
+  },
   {
     img: "../../assets/img/samsung.svg",
     text: "Samsung",
@@ -44,7 +49,7 @@ document.getElementById("options").innerHTML = productFilters
     let { img, text, type } = option;
     return `
     <li class="option" onclick=filterProducts('${type}')>
-    <img src=${img} alt="" />
+    <img src=${img} alt="" class="w-10"/>
     <span class="pl-4 option-text">${text}</span>
   </li>
     `;
@@ -55,8 +60,19 @@ window.filterProducts = (item) => {
   axios
     .get(BASE_URL)
     .then((result) => {
-      let filterData = result.data.filter((el) => el.type == item);
-      renderProduct(filterData);
+      if (item == "all") {
+        fetchData();
+      } else {
+        let filterData = result.data.filter((el) => el.type == item);
+        renderProduct(filterData);
+      }
+      let { img, text } = productFilters.find((el) => el.type == item);
+      document.querySelector(".sBtn-text").innerHTML = `
+      <div class="flex items-center">
+      <img class="w-10" src=${img} alt="" />
+      <span class="pl-4 option-text">${text}</span>
+    </div>
+      `;
     })
     .catch((err) => {
       console.log(err);
@@ -128,6 +144,7 @@ window.addEventListener("scroll", showBgHeader);
 const optionMenu = document.querySelector(".select-menu");
 const selectBtn = optionMenu.querySelector(".select-btn");
 const optionBtns = optionMenu.querySelectorAll(".option");
+const textOption = optionMenu.querySelectorAll(".sBtn-text");
 
 const showDropdown = () => {
   optionMenu.classList.toggle("active");

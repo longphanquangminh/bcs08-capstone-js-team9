@@ -7,7 +7,6 @@ export function fetchData() {
     .then((result) => {
       let products = result.data;
       renderProduct(products);
-
       localStorage.setItem("Products", JSON.stringify(products));
     })
     .catch((err) => {
@@ -22,10 +21,11 @@ export let renderProduct = (data) => {
       el;
     let contentDiv = /*html*/ `
         
-        <div class="product-item">
+        <div class="product-item flex flex-col justify-normal sm:justify-center min-w-[284px]">
             <img
+            class="h-[200px] object-contain"
               src=${img}
-              alt=""
+              alt=${name}
             />
             <h3>${name}</h3>
             <h4>$ ${price.toLocaleString()}</h4>
@@ -83,7 +83,7 @@ export let renderCart = (cartData) => {
             class="p-4 mb-5 rounded-xl shadow-md hover:shadow-xl duration-300 cart-item"
           >
             <div class="flex gap-7 mb-4 item-top">
-              <img src=${img} class="w-2/5" alt="" />
+              <img src=${img} class="w-2/6 md:w-2/5" alt="" />
               <div class="w-3/5 item-desc">
                 <h4 class="text-xl font-semibold mb-2">${name}</h4>
                 <p>

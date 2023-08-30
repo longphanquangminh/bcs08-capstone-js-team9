@@ -12,6 +12,11 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../../assets/img/logoPhone.png"
+    />
     <!-- Main Css -->
     <link
       rel="stylesheet"
@@ -24,14 +29,19 @@
   <body>
     <header class="p-3 header">
       <div class="flex items-center mx-auto max-w-7xl header-container">
-        <a href="#" class="inline-flex items-center gap-3 mr-32 logo">
-          <img src="../../assets/img/logo.svg" alt="" class="inline-block" />
-          <span class="text-2xl font-semibold text-white whitespace-nowrap"
+        <a href="#" class="inline-flex items-center gap-3 mr-5 md:mr-32 logo">
+          <img
+            src="../../assets/img/logoPhone.png"
+            alt=""
+            class="inline-block w-9"
+          />
+          <span
+            class="hidden text-2xl font-semibold text-white md:inline-block whitespace-nowrap"
             >Cyber Phone</span
           >
         </a>
-        <nav class="flex justify-between w-full nav">
-          <div class="flex gap-12">
+        <nav class="flex justify-end w-full gap-6 md:justify-between nav">
+          <div class="flex gap-6 md:gap-12">
             <a href="#" class="nav-item">
               <i class="fa-solid fa-house"></i>
               <span>Home</span>
@@ -56,7 +66,7 @@
 
     <div
       id="cart-menu"
-      class="fixed top-[72px] right-0 bottom-0 w-[500px] bg-white z-10 overflow-y-auto shadow-3xl translate-x-[100%]"
+      class="fixed top-[72px] right-0 bottom-0 w-auto sm:w-[500px] bg-white z-10 overflow-y-auto shadow-3xl translate-x-[100%]"
     >
       <div class="px-6 py-8">
         <h3 class="mb-8 text-3xl font-semibold">Danh sách mua hàng</h3>
@@ -102,9 +112,11 @@
 
     <div id="overlay" class="hidden"></div>
 
-    <section class="banner">
+    <section
+      class="banner bg-[length:350%] md:bg-[length:200%] lg:bg-[length:100%]"
+    >
       <div
-        class="max-w-7xl mx-auto flex items-center gap-3 h-[100vh] banner-container"
+        class="px-4 max-w-7xl mx-auto flex items-center gap-3 h-[100vh] banner-container"
       >
         <div class="w-1/2 banner-content">
           <h2>Galaxy Z Flip5</h2>
@@ -134,17 +146,26 @@
     </section>
 
     <section class="products">
-      <div class="py-10 mx-auto max-w-7xl products-container">
+      <div class="px-6 py-10 mx-auto max-w-7xl products-container">
         <div class="mb-9 select-menu">
           <div class="select-btn">
-            <span class="sBtn-text">Tất cả sản phẩm</span>
+            <span class="sBtn-text">
+              <div class="flex items-center">
+                <img class="w-10" src="../../assets/img/logo.png" alt="" />
+                <span class="pl-4 option-text">Tất cả sản phẩm</span>
+              </div>
+            </span>
             <i class="bx bx-chevron-down"></i>
           </div>
 
-          <ul class="options" id="options"></ul>
+          <ul class="options" id="options">
+            <li class="option">
+              <span class="pl-4 option-text"></span>
+            </li>
+          </ul>
         </div>
         <div
-          class="grid grid-cols-2 gap-8 xl:grid-cols-4 lg:grid-cols-3 product-list"
+          class="grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3 product-list"
           id="products"
         ></div>
       </div>
