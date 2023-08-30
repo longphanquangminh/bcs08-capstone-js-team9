@@ -1,7 +1,5 @@
-const createProductModalEl = document.getElementById("createProductModal");
-const createProductModal = new Modal(createProductModalEl);
-const updateProductModalEl = document.getElementById("updateProductModal");
-const updateProductModal = new Modal(updateProductModalEl);
+const createAndUpdateProductModalEl = document.getElementById("createAndUpdateProductModal");
+const createAndUpdateProductModal = new Modal(createAndUpdateProductModalEl);
 const readProductModalEl = document.getElementById("readProductModal");
 const readProductModal = new Modal(readProductModalEl);
 const deleteProductModalEl = document.getElementById("deleteModal");
@@ -90,7 +88,7 @@ function renderProductList(list) {
   document.getElementById("adminProductList").innerHTML = contentHTML;
 }
 
-function validateProductCreate(product) {
+function validateProductInput(product) {
   let { name, price, screen, backCamera, frontCamera, img, desc, type } = product;
   return (
     checkLength("name-error", name, 2, 50) &
@@ -101,20 +99,6 @@ function validateProductCreate(product) {
     checkImageUri("photo-error", img) &
     checkLength("description-error", desc, 2, 50) &
     checkChosenType("type-error", type)
-  );
-}
-
-function validateProductUpdate(product) {
-  let { name, price, screen, backCamera, frontCamera, img, desc, type } = product;
-  return (
-    checkLength("nameUpdate-error", name, 2, 50) &
-    checkPrice("priceUpdate-error", price) &
-    checkLength("screenUpdate-error", screen, 2, 50) &
-    checkLength("backCameraUpdate-error", backCamera, 2, 50) &
-    checkLength("frontCameraUpdate-error", frontCamera, 2, 50) &
-    checkImageUri("photoUpdate-error", img) &
-    checkLength("descriptionUpdate-error", desc, 2, 50) &
-    checkChosenType("typeUpdate-error", type)
   );
 }
 
@@ -129,22 +113,51 @@ function endLoading() {
   document.body.removeAttribute("style");
 }
 
-function createProductModalShow() {
-  createProductModal.show();
+function getProductInfoFromInput() {
+  let name = document.getElementById("name").value;
+  let price = document.getElementById("price").value * 1;
+  let screen = document.getElementById("screen").value;
+  let img = document.getElementById("photo").value;
+  let backCamera = document.getElementById("backCamera").value;
+  let frontCamera = document.getElementById("frontCamera").value;
+  let desc = document.getElementById("description").value;
+  let type = document.getElementById("type").value;
+  return new Product(name, price, screen, backCamera, frontCamera, img, desc, type);
+}
+
+function showProductDetailOnPreviewModal(product) {
+  document.getElementById("namePreview").innerHTML = product.name;
+  document.getElementById("pricePreview").innerHTML = new Intl.NumberFormat().format((product.price * 1).toFixed(2));
+  document.getElementById("screenPreview").innerHTML = product.screen;
+  document.getElementById("backCameraPreview").innerHTML = product.backCamera;
+  document.getElementById("frontCameraPreview").innerHTML = product.frontCamera;
+  document.getElementById("photoPreview").innerHTML = `<img class="w-[25%] m-auto" src="${product.img}" alt="${product.id}" />`;
+  document.getElementById("descriptionPreview").innerHTML = product.desc;
+  document.getElementById("typePreview").innerHTML = product.type;
+}
+
+function showProductDetailOnFormModal(product) {
+  document.getElementById("name").value = product.name;
+  document.getElementById("price").value = product.price;
+  document.getElementById("screen").value = product.screen;
+  document.getElementById("photo").value = product.img;
+  document.getElementById("backCamera").value = product.backCamera;
+  document.getElementById("frontCamera").value = product.frontCamera;
+  document.getElementById("description").value = product.desc;
+  document.getElementById("type").value = product.type;
+}
+
+function createAndUpdateProductModalShow() {
+  createAndUpdateProductModal.show();
+  document.getElementById("addProductBtnSection").style.display = "inline-flex";
+  document.getElementById("updateProductBtnSection").style.display = "none";
+  document.getElementById("modal-title").innerText = "Add Product";
   resetForm();
 }
 
-function createProductModalHide() {
-  createProductModal.hide();
-}
-
-function updateProductModalShow() {
-  updateProductModal.show();
-  resetForm();
-}
-
-function updateProductModalHide() {
-  updateProductModal.hide();
+function createAndUpdateProductModalHide() {
+  createAndUpdateProductModal.hide();
+  document.getElementById("simple-search").value = "";
 }
 
 function readProductModalShow() {
@@ -161,4 +174,5 @@ function deleteProductModalShow() {
 
 function deleteProductModalHide() {
   deleteProductModal.hide();
+  document.getElementById("simple-search").value = "";
 }

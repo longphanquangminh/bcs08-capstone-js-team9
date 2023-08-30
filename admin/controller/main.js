@@ -1,16 +1,8 @@
 let chosenProductId = -1;
 
 function addProduct() {
-  let name = document.getElementById("name").value;
-  let price = document.getElementById("price").value * 1;
-  let screen = document.getElementById("screen").value;
-  let img = document.getElementById("photo").value;
-  let backCamera = document.getElementById("backCamera").value;
-  let frontCamera = document.getElementById("frontCamera").value;
-  let desc = document.getElementById("description").value;
-  let type = document.getElementById("type").value;
-  let product = new Product(name, price, screen, backCamera, frontCamera, img, desc, type);
-  if (validateProductCreate(product)) {
+  let product = getProductInfoFromInput();
+  if (validateProductInput(product)) {
     startLoading();
     axios({
       url: BASE_URL,
@@ -19,35 +11,25 @@ function addProduct() {
     })
       .then(res => {
         fetchProductList();
-        createProductModalHide();
+        createAndUpdateProductModalHide();
         setTimeout(() => {
           endLoading();
         }, TIME_OUT_VALUE);
         console.log(res);
-        resetForm();
       })
       .catch(err => {
         console.log(err);
-        createProductModalHide();
+        createAndUpdateProductModalHide();
         setTimeout(() => {
           endLoading();
         }, TIME_OUT_VALUE);
-        resetForm();
       });
   }
 }
 
 function updateProduct() {
-  let name = document.getElementById("nameUpdate").value;
-  let price = document.getElementById("priceUpdate").value * 1;
-  let screen = document.getElementById("screenUpdate").value;
-  let img = document.getElementById("photoUpdate").value;
-  let backCamera = document.getElementById("backCameraUpdate").value;
-  let frontCamera = document.getElementById("frontCameraUpdate").value;
-  let desc = document.getElementById("descriptionUpdate").value;
-  let type = document.getElementById("typeUpdate").value;
-  let product = new Product(name, price, screen, backCamera, frontCamera, img, desc, type);
-  if (validateProductUpdate(product)) {
+  let product = getProductInfoFromInput();
+  if (validateProductInput(product)) {
     startLoading();
     axios({
       url: `${BASE_URL}/${chosenProductId}`,
@@ -60,21 +42,20 @@ function updateProduct() {
           endLoading();
         }, TIME_OUT_VALUE);
         console.log(res);
-        updateProductModalHide();
+        createAndUpdateProductModalHide();
       })
       .catch(err => {
         console.log(err);
         setTimeout(() => {
           endLoading();
         }, TIME_OUT_VALUE);
-        updateProductModalHide();
+        createAndUpdateProductModalHide();
       });
   }
 }
 
 function deleteProduct() {
   startLoading();
-  document.getElementById("simple-search").value = "";
   deleteProductModalHide();
   axios({
     url: `${BASE_URL}/${chosenProductId}`,
@@ -99,28 +80,21 @@ function getProductId(id) {
 
 function readProduct(id) {
   readProductModalShow();
-  resetForm();
+  resetPreview();
   startLoading();
   axios({
     url: `${BASE_URL}/${id}`,
     method: "GET",
   })
     .then(res => {
-      document.getElementById("namePreview").innerHTML = res.data.name;
-      document.getElementById("pricePreview").innerHTML = new Intl.NumberFormat().format((res.data.price * 1).toFixed(2));
-      document.getElementById("screenPreview").innerHTML = res.data.screen;
-      document.getElementById("backCameraPreview").innerHTML = res.data.backCamera;
-      document.getElementById("frontCameraPreview").innerHTML = res.data.frontCamera;
-      document.getElementById("photoPreview").innerHTML = `<img class="w-[25%] m-auto" src="${res.data.img}" alt="${id}" />`;
-      document.getElementById("descriptionPreview").innerHTML = res.data.desc;
-      document.getElementById("typePreview").innerHTML = res.data.type;
+      showProductDetailOnPreviewModal(res.data);
       setTimeout(() => {
         endLoading();
       }, TIME_OUT_VALUE);
     })
     .catch(err => {
       console.log(err);
-      resetForm();
+      resetPreview();
       setTimeout(() => {
         endLoading();
       }, TIME_OUT_VALUE);
@@ -176,7 +150,10 @@ function sortHighToLow() {
 }
 
 function editProduct(id) {
-  updateProductModalShow();
+  createAndUpdateProductModalShow();
+  document.getElementById("updateProductBtnSection").style.display = "flex";
+  document.getElementById("addProductBtnSection").style.display = "none";
+  document.getElementById("modal-title").innerText = "Update Product";
   chosenProductId = id;
   startLoading();
   axios({
@@ -184,14 +161,7 @@ function editProduct(id) {
     method: "GET",
   })
     .then(res => {
-      document.getElementById("nameUpdate").value = res.data.name;
-      document.getElementById("priceUpdate").value = res.data.price;
-      document.getElementById("screenUpdate").value = res.data.screen;
-      document.getElementById("photoUpdate").value = res.data.img;
-      document.getElementById("backCameraUpdate").value = res.data.backCamera;
-      document.getElementById("frontCameraUpdate").value = res.data.frontCamera;
-      document.getElementById("descriptionUpdate").value = res.data.desc;
-      document.getElementById("typeUpdate").value = res.data.type;
+      showProductDetailOnFormModal(res.data);
       setTimeout(() => {
         endLoading();
       }, TIME_OUT_VALUE);
@@ -232,3 +202,8 @@ function searchProduct() {
 fetchProductList();
 
 applyNumberInputStyles();
+
+document.getElementById("mobile-menu").classList.toggle("hidden");
+document.getElementById("hamburger").addEventListener("click", () => {
+  document.getElementById("mobile-menu").classList.toggle("hidden");
+});
