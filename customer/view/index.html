@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../../assets/img/logoPhone.png"
+    />
+    <!-- Main Css -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link rel="stylesheet" href="../../assets/css/storePage.css" />
+    <title>Phone Store</title>
+  </head>
+  <body>
+    <header class="p-3 header">
+      <div class="flex items-center mx-auto max-w-7xl header-container">
+        <a href="#" class="inline-flex items-center gap-3 mr-5 md:mr-32 logo">
+          <img
+            src="../../assets/img/logoPhone.png"
+            alt=""
+            class="inline-block w-9"
+          />
+          <span
+            class="hidden text-2xl font-semibold text-white md:inline-block whitespace-nowrap"
+            >Cyber Phone</span
+          >
+        </a>
+        <nav class="flex justify-end w-full gap-6 md:justify-between nav">
+          <div class="flex gap-6 md:gap-12">
+            <a href="#" class="nav-item">
+              <i class="fa-solid fa-house"></i>
+              <span>Home</span>
+            </a>
+            <a href="#" class="nav-item">
+              <i class="fa-solid fa-user-gear"></i>
+              <span>Admin Portal</span>
+            </a>
+          </div>
+          <button class="relative nav-item cart-btn" id="cartBtn">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Cart</span>
+            <span
+              class="absolute top-[-8px] right-[-8px] w-4 h-4 flex justify-center items-center text-[12px] rounded-full bg-red-600 text-white"
+              id="quantity"
+              >0</span
+            >
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div
+      id="cart-menu"
+      class="fixed top-[72px] right-0 bottom-0 w-auto sm:w-[500px] bg-white z-10 overflow-y-auto shadow-3xl translate-x-[100%]"
+    >
+      <div class="px-6 py-8">
+        <h3 class="mb-8 text-3xl font-semibold">Danh sách mua hàng</h3>
+        <div class="cart-list" id="cart-list"></div>
+      </div>
+      <div class="p-6 bg-gray-100" id="payment">
+        <div class="flex justify-between mb-2">
+          <span class="text-gray-600">Tổng tiền hàng</span>
+          <span class="text-green-800" id="totalProduct">25.000.000 vnd</span>
+        </div>
+        <div class="flex justify-between mb-2">
+          <span class="text-gray-600">Tổng tiền phí vận chuyển</span>
+          <span class="text-green-800" id="totalDelivery">25.000 vnd</span>
+        </div>
+        <div class="flex justify-between mb-2 font-semibold">
+          <span class="text-gray-600">Tổng thanh toán</span>
+          <span class="text-green-800" id="totalPayment">25.000.000 vnd</span>
+        </div>
+        <div class="flex justify-between mt-4 text-white duration-300">
+          <div>
+            <button
+              id="backToStore"
+              class="px-4 py-2 bg-green-800 rounded-md hover:bg-green-900"
+            >
+              Quay lại
+            </button>
+            <button
+              id="removeAllBtn"
+              class="px-4 py-2 bg-red-500 rounded-md hover:bg-red-600"
+            >
+              Xóa hết
+            </button>
+          </div>
+          <button
+            id="paymentBtn"
+            class="px-4 py-2 bg-blue-600 rounded-md hover:bg-blue-700"
+          >
+            Thanh toán
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="overlay" class="hidden"></div>
+
+    <section
+      class="banner bg-[length:350%] md:bg-[length:200%] lg:bg-[length:100%]"
+    >
+      <div
+        class="px-4 max-w-7xl mx-auto flex items-center gap-3 h-[100vh] banner-container"
+      >
+        <div class="w-1/2 banner-content">
+          <h2>Galaxy Z Flip5</h2>
+          <div class="rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+          </div>
+          <p>
+            Cùng gặp gỡ Flex Window 3.4 inch - màn hình ngoài đa năng được sinh
+            ra để bạn thể hiện cá tính.1 Với bản lề Flex được tái thiết kế, giờ
+            đây Galaxy Z Flip5 có thể gập sát lại và nằm gọn trong túi, cũng như
+            trong tay bạn
+          </p>
+          <span class="price">25.990.400 ₫</span>
+          <button class="cursor-pointer button">Thêm vào giỏ hàng</button>
+        </div>
+        <div class="w-1/2 banner-img">
+          <img
+            src="https://images.samsung.com/is/image/samsung/p6pim/vn/2307/gallery/vn-galaxy-z-flip5-f731-sm-f731blgexxv-thumb-537229869?imwidth=480"
+            alt=""
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="products">
+      <div class="px-6 py-10 mx-auto max-w-7xl products-container">
+        <div class="mb-9 select-menu">
+          <div class="select-btn">
+            <span class="sBtn-text">
+              <div class="flex items-center">
+                <img class="w-10" src="../../assets/img/logo.png" alt="" />
+                <span class="pl-4 option-text">Tất cả sản phẩm</span>
+              </div>
+            </span>
+            <i class="bx bx-chevron-down"></i>
+          </div>
+
+          <ul class="options" id="options">
+            <li class="option">
+              <span class="pl-4 option-text"></span>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3 product-list"
+          id="products"
+        ></div>
+      </div>
+    </section>
+
+    <footer
+      class="bg-gradient-to-tr from-[#243041] via-[#007481] to-[#13b000] text-white my-auto mx-0"
+    >
+      <div
+        class="flex justify-center gap-6 px-2 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8"
+      >
+        <p class="hidden md:block">Get connected with us on social networks:</p>
+        <div>
+          <a href="#" class="me-4 text-reset">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="me-4 text-reset">
+            <i class="fab fa-x-twitter"></i>
+          </a>
+          <a href="#" class="me-4 text-reset">
+            <i class="fab fa-google"></i>
+          </a>
+          <a href="#" class="me-4 text-reset">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="me-4 text-reset">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="#" class="me-4 text-reset">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+      </div>
+      <div class="w-full h-px bg-[#fff]"></div>
+      <div
+        class="grid grid-cols-1 gap-16 px-2 py-6 mx-auto text-sm text-center max-w-7xl md:text-justify sm:px-6 lg:px-8 md:grid-cols-10"
+      >
+        <div class="md:col-span-3">
+          <div class="mb-3 font-bold uppercase">
+            <a class="navbar-brand me-5" href="#">
+              <i class="fa-lg fa-solid fa-robot me-2"></i>
+              Cyber Phone
+            </a>
+          </div>
+          <p>
+            We pride ourselves on our efficiency and hard work, but most of all
+            our ability to source you the best quality and best value products
+            and devices in the market.
+          </p>
+        </div>
+        <div class="md:col-span-2">
+          <h2 class="mb-3 font-bold uppercase">Brands</h2>
+          <ul class="grid gap-6">
+            <li class="underline"><a href="#">iPhone</a></li>
+            <li class="underline"><a href="#">Samsung</a></li>
+            <li class="underline"><a href="#">Xiaomi</a></li>
+            <li class="underline"><a href="#">Oppo</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-2">
+          <h2 class="hidden mb-3 font-bold uppercase md:block">Links</h2>
+          <h2 class="block mb-3 font-bold uppercase md:hidden">Useful Links</h2>
+          <ul class="grid gap-6">
+            <li class="underline"><a href="#">Pricing</a></li>
+            <li class="underline"><a href="#">Settings</a></li>
+            <li class="underline"><a href="#">Orders</a></li>
+            <li class="underline"><a href="#">Help</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-3">
+          <h2 class="mb-3 font-bold uppercase">CONTACT</h2>
+          <ul class="grid gap-6">
+            <li>
+              <i class="mr-2 fas fa-home"></i>
+              <a
+                href="https://www.google.com/maps/place/Ho+Chi+Minh+City"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Ho Chi Minh City, VN</a
+              >
+            </li>
+            <li>
+              <i class="mr-2 fas fa-envelope"></i>
+              <a href="mailto:cyberphone@mail.com">cyberphone@mail.com</a>
+            </li>
+            <li>
+              <i class="mr-2 fas fa-phone"></i>
+              <a href="tel:+01234567888">+01 234 567 88</a>
+            </li>
+            <li>
+              <i class="mr-2 fas fa-print"></i>
+              <a href="tel:+01234567889">+01 234 567 89</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="text-center p-4 bg-[#000]/[0.05]">
+        © 2023 Copyright:
+        <a class="font-bold underline" href="#">Cyber Phone</a>
+      </div>
+    </footer>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+      integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script type="module" src="../controller/main.js"></script>
+  </body>
+</html>
