@@ -12,17 +12,9 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="../../assets/img/logoPhone.png"
-    />
+    <link rel="icon" type="image/x-icon" href="../../assets/img/logoPhone.png" />
     <!-- Main Css -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
-    />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
     <link rel="stylesheet" href="../../assets/css/storePage.css" />
     <title>Phone Store</title>
   </head>
@@ -30,15 +22,8 @@
     <header class="p-3 header">
       <div class="flex items-center mx-auto max-w-7xl header-container">
         <a href="#" class="inline-flex items-center gap-3 mr-5 md:mr-32 logo">
-          <img
-            src="../../assets/img/logoPhone.png"
-            alt=""
-            class="inline-block w-9"
-          />
-          <span
-            class="hidden text-2xl font-semibold text-white md:inline-block whitespace-nowrap"
-            >Cyber Phone</span
-          >
+          <img src="../../assets/img/logoPhone.png" alt="" class="inline-block w-9" />
+          <span class="hidden text-2xl font-semibold text-white md:inline-block whitespace-nowrap">Cyber Phone</span>
         </a>
         <nav class="flex justify-end w-full gap-6 md:justify-between nav">
           <div class="flex gap-6 md:gap-12">
@@ -57,17 +42,15 @@
             <span
               class="absolute top-[-8px] right-[-8px] w-4 h-4 flex justify-center items-center text-[12px] rounded-full bg-red-600 text-white"
               id="quantity"
-              >0</span
             >
+              0
+            </span>
           </button>
         </nav>
       </div>
     </header>
 
-    <div
-      id="cart-menu"
-      class="fixed top-[72px] right-0 bottom-0 w-auto sm:w-[500px] bg-white z-10 overflow-y-auto shadow-3xl translate-x-[100%]"
-    >
+    <div id="cart-menu" class="fixed top-[72px] right-0 bottom-0 w-auto sm:w-[500px] bg-white z-10 overflow-y-auto shadow-3xl translate-x-[100%]">
       <div class="px-6 py-8">
         <h3 class="mb-8 text-3xl font-semibold">Danh sách mua hàng</h3>
         <div class="cart-list" id="cart-list"></div>
@@ -87,37 +70,18 @@
         </div>
         <div class="flex justify-between mt-4 text-white duration-300">
           <div>
-            <button
-              id="backToStore"
-              class="px-4 py-2 bg-green-800 rounded-md hover:bg-green-900"
-            >
-              Quay lại
-            </button>
-            <button
-              id="removeAllBtn"
-              class="px-4 py-2 bg-red-500 rounded-md hover:bg-red-600"
-            >
-              Xóa hết
-            </button>
+            <button id="backToStore" class="px-4 py-2 bg-green-800 rounded-md hover:bg-green-900">Quay lại</button>
+            <button id="removeAllBtn" class="px-4 py-2 bg-red-500 rounded-md hover:bg-red-600">Xóa hết</button>
           </div>
-          <button
-            id="paymentBtn"
-            class="px-4 py-2 bg-blue-600 rounded-md hover:bg-blue-700"
-          >
-            Thanh toán
-          </button>
+          <button id="paymentBtn" class="px-4 py-2 bg-blue-600 rounded-md hover:bg-blue-700">Thanh toán</button>
         </div>
       </div>
     </div>
 
     <div id="overlay" class="hidden"></div>
 
-    <section
-      class="banner bg-[length:350%] md:bg-[length:200%] lg:bg-[length:100%]"
-    >
-      <div
-        class="px-4 max-w-7xl mx-auto flex items-center gap-3 h-[100vh] banner-container"
-      >
+    <section class="banner bg-[length:350%] md:bg-[length:200%] lg:bg-[length:100%]">
+      <div class="px-4 max-w-7xl mx-auto flex items-center gap-3 h-[100vh] banner-container">
         <div class="w-1/2 banner-content">
           <h2>Galaxy Z Flip5</h2>
           <div class="rating">
@@ -128,10 +92,8 @@
             <i class="fa-solid fa-star-half-stroke"></i>
           </div>
           <p>
-            Cùng gặp gỡ Flex Window 3.4 inch - màn hình ngoài đa năng được sinh
-            ra để bạn thể hiện cá tính.1 Với bản lề Flex được tái thiết kế, giờ
-            đây Galaxy Z Flip5 có thể gập sát lại và nằm gọn trong túi, cũng như
-            trong tay bạn
+            Cùng gặp gỡ Flex Window 3.4 inch - màn hình ngoài đa năng được sinh ra để bạn thể hiện cá tính.1 Với bản lề Flex được tái thiết kế, giờ
+            đây Galaxy Z Flip5 có thể gập sát lại và nằm gọn trong túi, cũng như trong tay bạn
           </p>
           <span class="price">25.990.400 ₫</span>
           <button class="cursor-pointer button">Thêm vào giỏ hàng</button>
@@ -164,19 +126,12 @@
             </li>
           </ul>
         </div>
-        <div
-          class="grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3 product-list"
-          id="products"
-        ></div>
+        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3 product-list" id="products"></div>
       </div>
     </section>
 
-    <footer
-      class="bg-gradient-to-tr from-[#243041] via-[#007481] to-[#13b000] text-white my-auto mx-0"
-    >
-      <div
-        class="flex justify-center gap-6 px-2 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8"
-      >
+    <footer class="bg-gradient-to-tr from-[#243041] via-[#007481] to-[#13b000] text-white my-auto mx-0">
+      <div class="flex justify-center gap-6 px-2 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <p class="hidden md:block">Get connected with us on social networks:</p>
         <div>
           <a href="#" class="me-4 text-reset">
@@ -200,9 +155,7 @@
         </div>
       </div>
       <div class="w-full h-px bg-[#fff]"></div>
-      <div
-        class="grid grid-cols-1 gap-16 px-2 py-6 mx-auto text-sm text-center max-w-7xl md:text-justify sm:px-6 lg:px-8 md:grid-cols-10"
-      >
+      <div class="grid grid-cols-1 gap-16 px-2 py-6 mx-auto text-sm text-center max-w-7xl md:text-justify sm:px-6 lg:px-8 md:grid-cols-10">
         <div class="md:col-span-3">
           <div class="mb-3 font-bold uppercase">
             <a class="navbar-brand me-5" href="#">
@@ -211,9 +164,8 @@
             </a>
           </div>
           <p>
-            We pride ourselves on our efficiency and hard work, but most of all
-            our ability to source you the best quality and best value products
-            and devices in the market.
+            We pride ourselves on our efficiency and hard work, but most of all our ability to source you the best quality and best value products and
+            devices in the market.
           </p>
         </div>
         <div class="md:col-span-2">
@@ -240,12 +192,7 @@
           <ul class="grid gap-6">
             <li>
               <i class="mr-2 fas fa-home"></i>
-              <a
-                href="https://www.google.com/maps/place/Ho+Chi+Minh+City"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Ho Chi Minh City, VN</a
-              >
+              <a href="https://www.google.com/maps/place/Ho+Chi+Minh+City" target="_blank" rel="noopener noreferrer">Ho Chi Minh City, VN</a>
             </li>
             <li>
               <i class="mr-2 fas fa-envelope"></i>
@@ -274,10 +221,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/toastify-js"
-    ></script>
-    <script type="module" src="../controller/main.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script type="module" src="../../customer/controller/main.js"></script>
   </body>
 </html>
