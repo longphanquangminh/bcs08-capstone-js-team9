@@ -132,9 +132,26 @@ export let renderCart = (cartData) => {
   document.querySelector("#cart-list").innerHTML = contentHTML;
   document.querySelector("#totalProduct").innerHTML = `$ ${total}`;
   document.querySelector("#totalDelivery").innerHTML = "$ 10";
-  document.querySelector("#totalPayment").innerHTML = `$ ${total - 10}`;
+  document.querySelector("#totalPayment").innerHTML = `$ ${total + 10}`;
 };
 
 export let findIndex = (id, list) => {
   return list.findIndex((el) => el.id == id);
+};
+
+export let showToastMessage = (msg, isSuccess) => {
+  Toastify({
+    text: msg,
+    duration: 3000,
+    destination: "https://github.com/apvarun/toastify-js",
+    newWindow: true,
+    gravity: "top", // `top` or `bottom`
+    position: "right", // `left`, `center` or `right`
+    style: {
+      background: `linear-gradient(to right, ${
+        isSuccess ? "#00b09b, #96c93d" : "#C70039, #F94C10"
+      } )`,
+    },
+    onClick: function () {}, // Callback after click
+  }).showToast();
 };

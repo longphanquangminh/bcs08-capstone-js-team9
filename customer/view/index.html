@@ -13,15 +13,20 @@
       referrerpolicy="no-referrer"
     />
     <!-- Main Css -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
     <link rel="stylesheet" href="../../assets/css/storePage.css" />
     <title>Phone Store</title>
   </head>
   <body>
     <header class="p-3 header">
-      <div class="max-w-7xl mx-auto flex items-center header-container">
-        <a href="#" class="inline-flex gap-3 items-center mr-32 logo">
+      <div class="flex items-center mx-auto max-w-7xl header-container">
+        <a href="#" class="inline-flex items-center gap-3 mr-32 logo">
           <img src="../../assets/img/logo.svg" alt="" class="inline-block" />
-          <span class="text-white text-2xl font-semibold whitespace-nowrap"
+          <span class="text-2xl font-semibold text-white whitespace-nowrap"
             >Cyber Phone</span
           >
         </a>
@@ -36,7 +41,7 @@
               <span>Admin Portal</span>
             </a>
           </div>
-          <button class="nav-item cart-btn relative" id="cartBtn">
+          <button class="relative nav-item cart-btn" id="cartBtn">
             <i class="fa-solid fa-cart-shopping"></i>
             <span>Cart</span>
             <span
@@ -53,11 +58,11 @@
       id="cart-menu"
       class="fixed top-[72px] right-0 bottom-0 w-[500px] bg-white z-10 overflow-y-auto shadow-3xl translate-x-[100%]"
     >
-      <div class="py-8 px-6">
-        <h3 class="text-3xl font-semibold mb-8">Danh sách mua hàng</h3>
+      <div class="px-6 py-8">
+        <h3 class="mb-8 text-3xl font-semibold">Danh sách mua hàng</h3>
         <div class="cart-list" id="cart-list"></div>
       </div>
-      <div class="bg-gray-100 p-6" id="payment">
+      <div class="p-6 bg-gray-100" id="payment">
         <div class="flex justify-between mb-2">
           <span class="text-gray-600">Tổng tiền hàng</span>
           <span class="text-green-800" id="totalProduct">25.000.000 vnd</span>
@@ -70,24 +75,24 @@
           <span class="text-gray-600">Tổng thanh toán</span>
           <span class="text-green-800" id="totalPayment">25.000.000 vnd</span>
         </div>
-        <div class="text-white duration-300 flex justify-between mt-4">
+        <div class="flex justify-between mt-4 text-white duration-300">
           <div>
             <button
               id="backToStore"
-              class="px-4 py-2 rounded-md bg-green-800 hover:bg-green-900"
+              class="px-4 py-2 bg-green-800 rounded-md hover:bg-green-900"
             >
               Quay lại
             </button>
             <button
               id="removeAllBtn"
-              class="px-4 py-2 rounded-md bg-red-500 hover:bg-red-600"
+              class="px-4 py-2 bg-red-500 rounded-md hover:bg-red-600"
             >
               Xóa hết
             </button>
           </div>
           <button
             id="paymentBtn"
-            class="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700"
+            class="px-4 py-2 bg-blue-600 rounded-md hover:bg-blue-700"
           >
             Thanh toán
           </button>
@@ -117,7 +122,7 @@
             trong tay bạn
           </p>
           <span class="price">25.990.400 ₫</span>
-          <button class="button cursor-pointer">Thêm vào giỏ hàng</button>
+          <button class="cursor-pointer button">Thêm vào giỏ hàng</button>
         </div>
         <div class="w-1/2 banner-img">
           <img
@@ -129,7 +134,7 @@
     </section>
 
     <section class="products">
-      <div class="max-w-7xl mx-auto py-10 products-container">
+      <div class="py-10 mx-auto max-w-7xl products-container">
         <div class="mb-9 select-menu">
           <div class="select-btn">
             <span class="sBtn-text">Tất cả sản phẩm</span>
@@ -139,7 +144,7 @@
           <ul class="options" id="options"></ul>
         </div>
         <div
-          class="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-8 product-list"
+          class="grid grid-cols-2 gap-8 xl:grid-cols-4 lg:grid-cols-3 product-list"
           id="products"
         ></div>
       </div>
@@ -149,7 +154,7 @@
       class="bg-gradient-to-tr from-[#243041] via-[#007481] to-[#13b000] text-white my-auto mx-0"
     >
       <div
-        class="flex justify-center gap-6 py-6 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8"
+        class="flex justify-center gap-6 px-2 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8"
       >
         <p class="hidden md:block">Get connected with us on social networks:</p>
         <div>
@@ -175,10 +180,10 @@
       </div>
       <div class="w-full h-px bg-[#fff]"></div>
       <div
-        class="text-sm mx-auto max-w-7xl py-6 px-2 text-center md:text-justify sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-10 gap-16"
+        class="grid grid-cols-1 gap-16 px-2 py-6 mx-auto text-sm text-center max-w-7xl md:text-justify sm:px-6 lg:px-8 md:grid-cols-10"
       >
         <div class="md:col-span-3">
-          <div class="font-bold uppercase mb-3">
+          <div class="mb-3 font-bold uppercase">
             <a class="navbar-brand me-5" href="#">
               <i class="fa-lg fa-solid fa-robot me-2"></i>
               Cyber Phone
@@ -191,7 +196,7 @@
           </p>
         </div>
         <div class="md:col-span-2">
-          <h2 class="mb-3 uppercase font-bold">Brands</h2>
+          <h2 class="mb-3 font-bold uppercase">Brands</h2>
           <ul class="grid gap-6">
             <li class="underline"><a href="#">iPhone</a></li>
             <li class="underline"><a href="#">Samsung</a></li>
@@ -200,8 +205,8 @@
           </ul>
         </div>
         <div class="md:col-span-2">
-          <h2 class="mb-3 uppercase font-bold hidden md:block">Links</h2>
-          <h2 class="mb-3 uppercase font-bold block md:hidden">Useful Links</h2>
+          <h2 class="hidden mb-3 font-bold uppercase md:block">Links</h2>
+          <h2 class="block mb-3 font-bold uppercase md:hidden">Useful Links</h2>
           <ul class="grid gap-6">
             <li class="underline"><a href="#">Pricing</a></li>
             <li class="underline"><a href="#">Settings</a></li>
@@ -210,7 +215,7 @@
           </ul>
         </div>
         <div class="md:col-span-3">
-          <h2 class="mb-3 uppercase font-bold">CONTACT</h2>
+          <h2 class="mb-3 font-bold uppercase">CONTACT</h2>
           <ul class="grid gap-6">
             <li>
               <i class="mr-2 fas fa-home"></i>
@@ -238,7 +243,7 @@
       </div>
       <div class="text-center p-4 bg-[#000]/[0.05]">
         © 2023 Copyright:
-        <a class="underline font-bold" href="#">Cyber Phone</a>
+        <a class="font-bold underline" href="#">Cyber Phone</a>
       </div>
     </footer>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -247,6 +252,10 @@
       integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
     ></script>
     <script type="module" src="../controller/main.js"></script>
   </body>
