@@ -171,13 +171,19 @@
                   >
                     <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="actionsDropdownButton">
                       <li>
-                        <a onclick="setDefaultSort()" href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                        <a
+                          id="defaultSort"
+                          onclick="setDefaultSort()"
+                          href="#"
+                          class="font-bold block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
                           Default
                         </a>
                       </li>
                     </ul>
                     <div class="py-1">
                       <a
+                        id="lowToHighSort"
                         onclick="sortLowToHigh()"
                         href="#"
                         class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
@@ -187,6 +193,7 @@
                     </div>
                     <div class="py-1">
                       <a
+                        id="highToLowSort"
                         onclick="sortHighToLow()"
                         href="#"
                         class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
@@ -584,7 +591,7 @@
   <script src="../utils/removeExtraSpaces.js"></script>
   <script src="../utils/reset.js"></script>
   <script src="../services/fetchProducts.js"></script>
-  <script src="../validate/validate.js"></script>
+  <script src="../validation/validate.js"></script>
   <script src="../controller/controller.js"></script>
   <script src="../controller/main.js"></script>
 </html>

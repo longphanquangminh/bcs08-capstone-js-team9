@@ -102,6 +102,9 @@ function readProduct(id) {
 }
 
 function setDefaultSort() {
+  document.getElementById("defaultSort").style.fontWeight = "bold";
+  document.getElementById("lowToHighSort").style.fontWeight = "normal";
+  document.getElementById("highToLowSort").style.fontWeight = "normal";
   startLoading();
   axios({
     url: BASE_URL,
@@ -119,6 +122,9 @@ function setDefaultSort() {
 
 function sortLowToHigh() {
   startLoading();
+  document.getElementById("defaultSort").style.fontWeight = "normal";
+  document.getElementById("lowToHighSort").style.fontWeight = "bold";
+  document.getElementById("highToLowSort").style.fontWeight = "normal";
   axios({
     url: BASE_URL,
     method: "GET",
@@ -135,12 +141,15 @@ function sortLowToHigh() {
 
 function sortHighToLow() {
   startLoading();
+  document.getElementById("defaultSort").style.fontWeight = "normal";
+  document.getElementById("lowToHighSort").style.fontWeight = "normal";
+  document.getElementById("highToLowSort").style.fontWeight = "bold";
   axios({
     url: BASE_URL,
     method: "GET",
   })
     .then(res => {
-      renderProductList(res.data.sort((a, b) => a.price - b.price));
+      renderProductList(res.data.sort((a, b) => b.price - a.price).reverse());
       endLoading();
     })
     .catch(err => {
